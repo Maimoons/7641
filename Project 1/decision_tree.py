@@ -2,12 +2,19 @@ import numpy as np
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import validation_curve
+from sklearn.model_selection import learning_curve
 from sklearn.metrics import accuracy_score
 
 from sklearn.datasets import load_breast_cancer
 import _pickle as cPickle
 from sklearn.preprocessing import StandardScaler
 from sklearn.utils import resample
+import time
+
+import matplotlib
+matplotlib.use("TkAgg")
+from matplotlib import pyplot as plt
 
 def scale_data(x_train, x_test):
     scaler = StandardScaler()
@@ -19,6 +26,7 @@ def scale_data(x_train, x_test):
     return x_train_scaled_df, x_test_scaled_df
  
 def resample_data(x_train, y_train):
+    "ref: https://melaniesoek0120.medium.com/breast-cancer-classification-machine-learning-1150498f18e2"
     training  = pd.DataFrame()
     training[x_train.columns]=x_train
     training['target']=list(y_train)
@@ -86,13 +94,13 @@ def load_dataset_2():
     x_train, x_test = scale_data(x_train, x_test)
     x_train, y_train = resample_data(x_train, y_train)
 
-    print(train_set.columns)
+    '''print(train_set.columns)
     print(x_train.head())
     print(x_train.isnull().sum())
 
     print(test_set.columns)
     print(x_test.head())
-    print(x_test.isnull().sum())
+    print(x_test.isnull().sum())'''
     return x_train, y_train, x_test, y_test
 
 def train(model_name):
@@ -105,32 +113,92 @@ def train(model_name):
     parameters = {
         "criterion": ["entropy", "gini", "log_loss"],
         "min_samples_leaf": range(1, 10),
-        "max_depth": range(1, 5),
-        "ccp_alpha": ccp_alphas
+        "max_depth": range(1, 10),
+        "ccp_alpha": ccp_alphas,
+        "train_sizes": np.linspace(0.1,1.0,10),
     }
 
-    """ classifiers = []
+    train_score, test_score = cv_validation(classifier, "max_depth", parameters["max_depth"])
+    plot_train_val_curve(train_score, test_score, parameters["max_depth"], "Max Depth","file_name")
 
-    for ccp_alpha in ccp_alphas:
-        clf = DecisionTreeClassifier(random_state=0, ccp_alpha=ccp_alpha)
-        clf.fit(x_train, y_train)
-        classifiers.append(clf)
-        
-        
-    acc_scores = [accuracy_score(y_test, classifier.predict(X_test)) for classifier in classifiers]
-    print(acc_scores)
-    """
+    train_score, test_score = cv_validation(classifier, "ccp_alpha", parameters["ccp_alpha"])
+    plot_train_val_curve(train_score, test_score, parameters["ccp_alpha"], "Cost of Pruning", "file_name")
+
+    train_score, test_score = learning(classifier, parameters["train_sizes"])
+    plot_train_val_curve(train_score, test_score, parameters["train_sizes"]*100, "Train Sizes %", "file_name")
 
     grid = GridSearchCV(classifier,
                         param_grid = parameters,
                         cv = 5,
                         verbose = True)
+    start_time = time.time()
     grid.fit(x_train, y_train)
+    end_time = time.time()
+    time_to_train = end_time - start_time
+    
     final_model = grid.best_estimator_
     save_model(final_model, model_name)
 
+    start_time = time.time()
     test(model_name, x_train, y_train, x_test)
+    end_time = time.time()
+    time_to_test = end_time - start_time
+    print("time to train", time_to_train)
+    print("time to test", time_to_test)
 
+def cv_validation(classifier, param_name, param_range):
+    train_score, test_score = validation_curve(classifier, x_train, y_train,
+                                       param_name = param_name,
+                                       param_range = param_range,
+                                        cv = 5, scoring = "accuracy")
+    return train_score, test_score
+  
+def learning(classifier, train_sizes):
+    train_sizes, train_scores, validation_scores = learning_curve(
+        estimator = classifier,
+        X = x_train, y = y_train, train_sizes = train_sizes, cv = 5, 
+        shuffle = True, random_state = 45)
+    return train_scores, validation_scores
+ 
+ 
+def plot_train_val_curve(train_score, test_score, param_range, param_name, file_name):
+    "ref: https://www.geeksforgeeks.org/validation-curve/"
+    mean_train_score = np.mean(train_score, axis = 1)
+    std_train_score = np.std(train_score, axis = 1)
+    
+    mean_test_score = np.mean(test_score, axis = 1)
+    std_test_score = np.std(test_score, axis = 1)
+    print("Mean Train Score", mean_train_score)
+    print("Mean Test Score", mean_test_score)
+
+    plt.plot(param_range, mean_train_score,
+        label = "Training Score", color = 'b')
+    plt.fill_between(
+    param_range,
+    mean_train_score - std_train_score,
+    mean_train_score + std_train_score,
+    alpha=0.2,
+    color="b",
+    lw=2,)
+    
+    plt.plot(param_range, mean_test_score,
+        label = "Cross Validation Score", color = 'g')
+    plt.fill_between(
+    param_range,
+    mean_test_score - std_test_score,
+    mean_test_score + std_test_score,
+    alpha=0.2,
+    color="g",
+    lw=2,)
+    
+    plt.title("Validation Curve with Decision Tree Classifier")
+    plt.xlabel("Number of Neighbours")
+    plt.ylabel("Accuracy")
+    plt.tight_layout()
+    plt.legend(loc = 'best')
+    plt.savefig("./images/"+file_name)
+    plt.clf()
+  
 def test(name, x_train, y_train, x_test):
     final_model = load_model(name)
     y_predict = final_model.predict(x_test)
@@ -154,3 +222,4 @@ if __name__ == "__main__":
     print(y_train.info())
     print(y_train.value_counts())
     #train("decisiontree.pkl")
+    
