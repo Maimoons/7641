@@ -16,15 +16,15 @@ matplotlib.use("TkAgg")
 from matplotlib import pyplot as plt
 import matplotlib.pyplot as pyplot
 from sklearn.model_selection import GridSearchCV
+import sys  		  	   		  	  		  		  		    	 		 		   		 		  
 
 def test(name, x_train, y_train, x_test, y_test, classes, dataset, filename):
     final_model = load_model(name)
     y_predict = final_model.predict(x_test)
-    debug(final_model.score(x_train, y_train))
-    debug(y_predict.shape)
-    debug(y_test.shape)
     accuracy = accuracy_score(y_test, y_predict)
-    debug(accuracy)
+    debug(("Test Accuracy: {0} \n").format(accuracy))
+    debug(("Final Train Accuracy: {0} \n").format(final_model.score(x_train, y_train)))
+
     metrics(y_test, y_predict, dataset, filename, classes)
     
 def scale_data(x_train, x_test):
@@ -60,9 +60,10 @@ def feature_selection(x_train, x_test):
     corr_matrix = x_train.corr().abs()
     upper = corr_matrix.where(np.triu(np.ones(corr_matrix.shape), k=1).astype(np.bool))
     to_drop = [column for column in upper.columns if any(upper[column] > 0.95)]
-    debug("to drop", to_drop)
     x_train.drop(columns=to_drop, inplace=True)
     x_test.drop(columns=to_drop, inplace=True)
+    debug(("Columns to drop: {0} \n").format(to_drop))
+
     return x_train, x_test
 
 def load_dataset_0():
@@ -70,7 +71,6 @@ def load_dataset_0():
     data = load_breast_cancer(as_frame=True)
     data_df = data.frame
     x = data_df.drop(columns='target')
-    #x['diagnosis'] = x['diagnosis'].apply(lambda x: '1' if x == 'M' else '0')
     y = data_df['target'].copy()
     x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=0)
     
@@ -199,7 +199,7 @@ def get_train_time(best_classifier, x_train, y_train):
     best_classifier.fit(x_train, y_train)
     end_time = time.time()
     time_to_train = end_time - start_time
-    debug("time to train", time_to_train)
+    debug(("Time to Train: {0} \n").format(time_to_train.loss_curve_))
 
 def metrics(y_test, y_pred, dataset, filename, classes):
     from sklearn.metrics import ConfusionMatrixDisplay
@@ -213,18 +213,17 @@ def metrics(y_test, y_pred, dataset, filename, classes):
     precision = precision_score(y_test,y_pred)
     recall = recall_score(y_test,y_pred)
     c_matrix = confusion_matrix(y_test,y_pred)
-    debug("f1", f1)
-    debug("accuracy", accuracy)
-    debug("precision", precision)
-    debug("recall", recall)
-    debug("c_matrix", c_matrix, "\n")
+    
+    debug(("f1: {0} \n accuracy: {1} precision: {2} \n recall: {3}").format(f1, accuracy, precision, recall))
+    debug(("Confusion Matrix: {0} \n").format(c_matrix))
+
     disp = ConfusionMatrixDisplay(confusion_matrix=c_matrix,
                                   display_labels=["0", "1"])
     disp.plot()
     plt.savefig("./images/"+dataset+filename+"_cm")
     
     
-def plot_compare_models(train_times, test_times, test_accuracies, classifiers):
+def plot_compare_models(train_times, test_times, test_accuracies, classifiers, dataset, filename):
   def times():
     fig, ax = pyplot.subplots()
     width = 0.3
@@ -240,7 +239,7 @@ def plot_compare_models(train_times, test_times, test_accuracies, classifiers):
     
     ax.legend()
     fig.tight_layout()
-    plt.show()
+    plt.savefig("./images/"+dataset+filename+"_models_time")
     plt.clf()
   
   def scores():
@@ -249,7 +248,7 @@ def plot_compare_models(train_times, test_times, test_accuracies, classifiers):
     pyplot.set_xticklabels(classifiers)
     pyplot.ylabel("Test Accuracy")
     pyplot.title('Test Accuracy for the classifiers')
-    plt.show()
+    plt.savefig("./images/"+dataset+filename+"_models_scores")
     plt.clf()
 
   xticks = np.arange(len(classifiers))

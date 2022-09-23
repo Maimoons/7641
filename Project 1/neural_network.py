@@ -27,7 +27,7 @@ def train_ANN(model_name):
     
     final_model = grid.best_estimator_
     save_model(final_model, model_name)
-    debug("best parameters", grid.best_params_)
+    debug(("Best Parameters: {0} \n").format(grid.best_params_))
     
     best_classifier = MLPClassifier(random_state= 10,
                                     solver = grid.best_params_["solver"],
@@ -47,7 +47,7 @@ def test_ANN(model_name):
     test(model_name, x_train, y_train, x_test, y_test, classes[dataset_idx], dataset[dataset_idx], "nn")
     end_time = time.time()
     time_to_test = end_time - start_time
-    debug("time to test", time_to_test) 
+    debug(("Time to Test: {0} \n").format(time_to_test))
                  
 def run_epochs(best_params_, epochs):
     scores_train = []
@@ -67,38 +67,26 @@ def run_epochs(best_params_, epochs):
         scores_train.append(best_classifier.score(x_train_split, y_train_split))
         scores_val.append(best_classifier.score(x_val, y_val))
         
-    debug("scores_train_epoch", scores_train)
-    debug("scores_val_epoch", scores_val)
-    debug("loss", best_classifier.loss_curve_)
+    debug(("scores_train_epoch: {0} \n").format(scores_train))
+    debug(("scores_val_epoch: {0} \n").format(scores_val))
+    debug(("loss: {0} \n").format(best_classifier.loss_curve_))
+
     plot_epochs(scores_train, scores_val, best_classifier.loss_curve_, "neural_net_epochs", dataset)
-  
-def run_epochs_classifier(best_classifier, epochs):
-    scores_train = []
-    scores_val = []
     
-    x_train_split, x_val, y_train_split, y_val = train_test_split(x_train, y_train, random_state=10, train_size=0.8, test_size=0.2)
-    
-    for epoch in range(epochs):
-        best_classifier.partial_fit(x_train_split, y_train_split)
-        scores_train.append(best_classifier.score(x_train_split, y_train_split))
-        scores_val.append(best_classifier.score(x_val, y_val))
-        
-    debug("scores_train_epoch", scores_train)
-    debug("scores_val_epoch", scores_val)
-    debug("loss", best_classifier.loss_curve_)
-    plot_epochs(scores_train, scores_val, best_classifier.loss_curve_, "neural_net_epochs", dataset[dataset_idx])
-      
 if __name__ == "__main__":
-    x_train, y_train, x_test, y_test = load_dataset_1()
-    
     dataset_idx = 1
+    if len(sys.argv) != 2: 
+        dataset_idx = sys.argv[1]
+        
+    x_train, y_train, x_test, y_test = load_dataset_0() if dataset_idx == 0 else load_dataset_1()  
     dataset = ["bc_", "titanic_"]
     classes = [["Malignant", "Benign"], ["Not Survived","Survived"]]
-    model_names = ["./models/decisiontree_bc.pkl", "./models/decisiontree_titanic.pkl"]
+    model_names = ["./models/nn_bc.pkl", "./models/nn_titanic.pkl"]
 
-    debug(x_train.describe())
-    debug(y_train.info())
-    debug(y_train.value_counts())
-    debug("\n \n")
+    # Data Information
+    debug(("XTrain: {0} \n").format(x_train.describe()))
+    debug(("YTrain: {0} \n").format(y_train.info()))
+    debug(("YTrain Info: {0} \n").format(y_train.value_counts()))
+    
     train_ANN(model_names[dataset_idx])
     test_ANN(model_names[dataset_idx])

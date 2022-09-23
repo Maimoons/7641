@@ -29,7 +29,7 @@ def train_KNN(model_name):
     
     final_model = grid.best_estimator_
     save_model(final_model, model_name)
-    debug("best parameters", grid.best_params_)
+    debug(("Best Parameters: {0} \n").format(grid.best_params_))
     
     best_classifier = KNeighborsClassifier(random_state= 10,
                                              algorithm='auto',
@@ -48,19 +48,22 @@ def test_KNN(model_name):
     test(model_name, x_train, y_train, x_test, y_test, classes[dataset_idx])
     end_time = time.time()
     time_to_test = end_time - start_time
-    debug("time to test", time_to_test)
+    debug(("Time to Test: {0} \n").format(time_to_test))
      
 if __name__ == "__main__":
-    x_train, y_train, x_test, y_test = load_dataset_1()
-    
     dataset_idx = 1
+    if len(sys.argv) != 2: 
+        dataset_idx = sys.argv[1]
+        
+    x_train, y_train, x_test, y_test = load_dataset_0() if dataset_idx == 0 else load_dataset_1()  
     dataset = ["bc_", "titanic_"]
     classes = [["Malignant", "Benign"], ["Not Survived","Survived"]]
-    model_names = ["./models/decisiontree_bc.pkl", "./models/decisiontree_titanic.pkl"]
-    debug(x_train.describe())
-    debug(y_train.info())
-    debug(y_train.value_counts())
-    debug("\n \n")
+    model_names = ["./models/knn_bc.pkl", "./models/knn_titanic.pkl"]
+    
+    # Data Information
+    debug(("XTrain: {0} \n").format(x_train.describe()))
+    debug(("YTrain: {0} \n").format(y_train.info()))
+    debug(("YTrain Info: {0} \n").format(y_train.value_counts()))
     
     train_KNN(model_names[dataset_idx])
     test_KNN(model_names[dataset_idx])

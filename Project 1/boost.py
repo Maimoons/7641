@@ -27,7 +27,7 @@ def train_Boost(model_name):
     
     final_model = grid.best_estimator_
     save_model(final_model, model_name)
-    debug("best parameters", grid.best_params_)
+    debug(("Best Parameters: {0} \n").format(grid.best_params_))
     
     best_classifier = GradientBoostingClassifier(random_state= 10,
                                              n_estimators = grid.best_params_["n_estimators"],
@@ -43,25 +43,22 @@ def test_Boost(model_name):
     test(model_name, x_train, y_train, x_test, y_test, classes[dataset_idx], dataset[dataset_idx], "boost")
     end_time = time.time()
     time_to_test = end_time - start_time
-    debug("time to test", time_to_test)
+    debug(("Time to Test: {0} \n").format(time_to_test))
        
 if __name__ == "__main__":
-    x_train, y_train, x_test, y_test = load_dataset_1()
-    
-    '''x_train = x_train.head(10)
-    y_train = y_train.head(10)
-    x_test = x_test.head(10)
-    y_test = y_test.head(10)'''
-    
     dataset_idx = 1
+    if len(sys.argv) != 2: 
+        dataset_idx = sys.argv[1]
+        
+    x_train, y_train, x_test, y_test = load_dataset_0() if dataset_idx == 0 else load_dataset_1()  
     dataset = ["bc_", "titanic_"]
     classes = [["Malignant", "Benign"], ["Not Survived","Survived"]]
-    model_names = ["./models/decisiontree_bc.pkl", "./models/decisiontree_titanic.pkl"]
+    model_names = ["./models/dboost_bc.pkl", "./models/boost_titanic.pkl"]
     
-    debug(x_train.describe())
-    debug(y_train.info())
-    debug(y_train.value_counts())
-    debug("\n \n")
+    # Data Information
+    debug(("XTrain: {0} \n").format(x_train.describe()))
+    debug(("YTrain: {0} \n").format(y_train.info()))
+    debug(("YTrain Info: {0} \n").format(y_train.value_counts()))
     
     train_Boost(model_names[dataset_idx])
     test_Boost(model_names[dataset_idx])
