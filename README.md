@@ -43,11 +43,11 @@
 
 This contains code for the first Assignment in the course.
 It implements 5 classifiers:
- * Decision Trees
- * Boosted Decision Trees
- * Neural Network
- * SVM
- * KNN
+ * Decision Treesv- decision_tree.py
+ * Boosted Decision Trees - boost.py
+ * Neural Network - ann.py
+ * SVM - svm.py
+ * KNN - knn.py
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -71,29 +71,16 @@ Follow the commands to setup and run the experiments:
 ### Prerequisites
 
 The list of requirements for this repo is in requirements.txt
-* npm
+* pip
   ```sh
   pip install -r requirements.txt
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Run the classifier
-   ```sh
-   python decision_tree.py 0
+   git clone https://github.com/Maimoons/7641
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -102,10 +89,18 @@ The list of requirements for this repo is in requirements.txt
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+There are two datasets used in thisa project.
+* Dataset 0 - Titanic dataset from Kagg;e
+* Dataset 1 - Breast cancer dataset from sklearn
 
-This Project
+The dataset index needs to be passed in to whatever classifier is being run. For example - 
 
-Part of homework assignment 7641 - Assignment 
+Running  the classifier
+   ```sh
+   python decision_tree.py 0
+   ```
+
+The above calls both the training and testing and saves the trained model. The output graphs are produced in the images folder.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
