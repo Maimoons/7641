@@ -1,0 +1,30 @@
+Number of Estimators Mean Train Score [0.98584839 1.         1.         1.         1.         1.        ] 
+
+Number of Estimators Mean Test Score [0.93085317 0.94345238 0.94657738 0.95287698 0.95287698 0.95287698] 
+
+Learning Rate Mean Train Score [0.9740528  0.9740528  0.97562761 0.98033966 0.99135093 1.
+ 1.         1.         1.         0.86865524] 
+
+Learning Rate Mean Test Score [0.94345238 0.93720238 0.93720238 0.93710317 0.93402778 0.94345238
+ 0.95292659 0.96235119 0.95282738 0.84310516] 
+
+Fitting 5 folds for each of 60 candidates, totalling 300 fits
+best parameters {'learning_rate': 0.7742636826811278, 'n_estimators': 100}
+Ratio of Train Sizes Mean Train Score [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] 
+
+Ratio of Train Sizes Mean Test Score [0.88397817 0.92475198 0.91845238 0.90262897 0.92455357 0.93397817
+ 0.94022817 0.94345238 0.95302579 0.95917659] 
+
+time to train 0.12057709693908691
+1.0
+(143,)
+(143,)
+0.9300699300699301
+f1 0.9425287356321839
+accuracy 0.9300699300699301
+precision 0.9761904761904762
+recall 0.9111111111111111
+c_matrix [[51  2]
+ [ 8 82]] 
+
+time to test 0.19801592826843262
