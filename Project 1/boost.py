@@ -7,7 +7,7 @@ def train_Boost(model_name):
     classifier = GradientBoostingClassifier(random_state= 10)
     
     parameters = {
-        "n_estimators":  [10, 50, 100, 500, 1000, 5000],
+        "n_estimators":  np.arange(10, 100, 10),
         "learning_rate": np.logspace(-4,1,10),
     }
 
@@ -46,8 +46,8 @@ def test_Boost(model_name):
     debug(("Time to Test: {0} \n").format(time_to_test))
        
 if __name__ == "__main__":
-    dataset_idx = 1
-    if len(sys.argv) != 2: 
+    dataset_idx = 0
+    if len(sys.argv) == 2: 
         dataset_idx = sys.argv[1]
         
     x_train, y_train, x_test, y_test = load_dataset_0() if dataset_idx == 0 else load_dataset_1()  

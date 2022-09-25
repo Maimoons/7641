@@ -62,7 +62,7 @@ def feature_selection(x_train, x_test):
     to_drop = [column for column in upper.columns if any(upper[column] > 0.95)]
     x_train.drop(columns=to_drop, inplace=True)
     x_test.drop(columns=to_drop, inplace=True)
-    debug(("Columns to drop: {0} \n").format(to_drop))
+    print(("Columns to drop: {0} \n").format(to_drop))
 
     return x_train, x_test
 
@@ -160,8 +160,7 @@ def plot_train_val_curve(train_score, test_score, param_range, param_name, file_
     alpha=0.2,
     color="g",
     lw=2,)
-    
-    plt.title("Validation Curve with Decision Tree Classifier")
+    plt.title("Validation Curve")
     plt.xlabel(param_name)
     plt.ylabel("Accuracy")
     plt.tight_layout()
@@ -199,7 +198,7 @@ def get_train_time(best_classifier, x_train, y_train):
     best_classifier.fit(x_train, y_train)
     end_time = time.time()
     time_to_train = end_time - start_time
-    debug(("Time to Train: {0} \n").format(time_to_train.loss_curve_))
+    debug(("Time to Train: {0} \n").format(time_to_train))
 
 def metrics(y_test, y_pred, dataset, filename, classes):
     from sklearn.metrics import ConfusionMatrixDisplay
@@ -244,7 +243,6 @@ def plot_compare_models(train_times, test_times, test_accuracies, classifiers, d
   
   def scores():
     pyplot.bar(classifiers, test_accuracies)
-    #pyplot.set_xticks(xticks)
     pyplot.set_xticklabels(classifiers)
     pyplot.ylabel("Test Accuracy")
     pyplot.title('Test Accuracy for the classifiers')

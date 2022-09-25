@@ -62,7 +62,7 @@ def run_epochs(best_params_, epochs):
                                     learning_rate_init = best_params_["learning_rate_init"],
                                     max_iter = 500)
     
-    for epoch in range(epochs):
+    for _ in range(epochs):
         best_classifier.partial_fit(x_train_split, y_train_split, classes=np.unique(y_train_split))
         scores_train.append(best_classifier.score(x_train_split, y_train_split))
         scores_val.append(best_classifier.score(x_val, y_val))
@@ -71,11 +71,11 @@ def run_epochs(best_params_, epochs):
     debug(("scores_val_epoch: {0} \n").format(scores_val))
     debug(("loss: {0} \n").format(best_classifier.loss_curve_))
 
-    plot_epochs(scores_train, scores_val, best_classifier.loss_curve_, "neural_net_epochs", dataset)
+    plot_epochs(scores_train, scores_val, best_classifier.loss_curve_, "neural_net_epochs", dataset[dataset_idx])
     
 if __name__ == "__main__":
-    dataset_idx = 1
-    if len(sys.argv) != 2: 
+    dataset_idx = 0
+    if len(sys.argv) == 2: 
         dataset_idx = sys.argv[1]
         
     x_train, y_train, x_test, y_test = load_dataset_0() if dataset_idx == 0 else load_dataset_1()  

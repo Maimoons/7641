@@ -42,14 +42,14 @@ def train_SVM(model_name):
  
 def test_SVM(model_name):   
     start_time = time.time()
-    test(model_name, x_train, y_train, x_test, y_test, classes[dataset_idx])
+    test(model_name, x_train, y_train, x_test, y_test, classes[dataset_idx], dataset[dataset_idx], "svm")
     end_time = time.time()
     time_to_test = end_time - start_time
     debug(("Time to Test: {0} \n").format(time_to_test))
     
 if __name__ == "__main__":
-    dataset_idx = 1
-    if len(sys.argv) != 2: 
+    dataset_idx = 0
+    if len(sys.argv) == 2: 
         dataset_idx = sys.argv[1]
         
     x_train, y_train, x_test, y_test = load_dataset_0() if dataset_idx == 0 else load_dataset_1()  

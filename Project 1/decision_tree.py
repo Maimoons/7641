@@ -52,21 +52,22 @@ def test_DT(model_name):
     debug(("Time to Test: {0} \n").format(time_to_test))
     
 if __name__ == "__main__":
-    dataset_idx = 1
-    if len(sys.argv) != 2: 
+    dataset_idx = 0
+    if len(sys.argv) == 2: 
         dataset_idx = sys.argv[1]
         
     x_train, y_train, x_test, y_test = load_dataset_0() if dataset_idx == 0 else load_dataset_1()  
     
-    dataset_idx = 1
     dataset = ["bc_", "titanic_"]
     classes = [["Malignant", "Benign"], ["Not Survived","Survived"]]
     model_names = ["./models/decisiontree_bc.pkl", "./models/decisiontree_titanic.pkl"]
     
     # Data Information
-    debug(("XTrain: {0} \n").format(x_train.describe()))
-    debug(("YTrain: {0} \n").format(y_train.info()))
-    debug(("YTrain Info: {0} \n").format(y_train.value_counts()))
+    debug(("XTrain: \n {0} \n").format(x_train.describe()))
+    debug(("XTrain: \n {0} \n").format(x_train.info()))
+    debug(("YTrain: \n {0} \n").format(y_train.describe()))
+    debug(("YTrain: \n {0} \n").format(y_train.info()))
+    debug(("YTrain: \n {0} \n").format(y_train.value_counts()))
     
     train_DT(model_names[dataset_idx])
     test_DT(model_names[dataset_idx])
