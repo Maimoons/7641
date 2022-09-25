@@ -40,7 +40,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Github Repo - https://github.com/Maimoons/7641/blob/master/README.md![image](https://user-images.githubusercontent.com/23156610/192144529-3bf19a45-f96b-455f-8d2d-6ec5138042fe.png)
+Github Repo - https://github.com/Maimoons/7641/blob/master/README.md
 
 
 This contains code for the first Assignment in the course.
