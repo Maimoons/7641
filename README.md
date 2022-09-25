@@ -40,7 +40,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Github Repo - https://github.com/Maimoons/7641/blob/master/README.md![image](https://user-images.githubusercontent.com/23156610/192144529-3bf19a45-f96b-455f-8d2d-6ec5138042fe.png)
+Github Repo - https://github.com/Maimoons/7641/blob/master/README.md
 
 
 This contains code for the first Assignment in the course.
@@ -82,10 +82,10 @@ Follow the commands to setup and run the experiments:
 
 ### Prerequisites
 
-The list of requirements for this repo is in requirements.txt
+The list of requirements for this repo is in requirements.txt so pip install each e.g
 * pip
   ```sh
-  pip install the requirements
+  pip install numpy
   ```
 
 <!-- USAGE EXAMPLES -->
@@ -102,6 +102,12 @@ Running  the classifier
    ```
 
 The above calls both the training and testing and saves the trained model. The output graphs are produced in the images folder.
+
+To plot training and testing time bar graphs - 
+Running  the classifier
+   ```sh
+   python base.py
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
