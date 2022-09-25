@@ -40,12 +40,14 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+Github Repo - https://github.com/Maimoons/7641/blob/master/README.md![image](https://user-images.githubusercontent.com/23156610/192144529-3bf19a45-f96b-455f-8d2d-6ec5138042fe.png)
+
 
 This contains code for the first Assignment in the course.
 It implements 5 classifiers:
  * Decision Treesv- decision_tree.py
  * Boosted Decision Trees - boost.py
- * Neural Network - ann.py
+ * Neural Network - neaural_network.py
  * SVM - svm.py
  * KNN - knn.py
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -68,14 +70,6 @@ It implements 5 classifiers:
 
 Follow the commands to setup and run the experiments:
 
-### Prerequisites
-
-The list of requirements for this repo is in requirements.txt
-* pip
-  ```sh
-  pip install -r requirements.txt
-  ```
-
 ### Installation
 
 1. Clone the repo
@@ -86,6 +80,13 @@ The list of requirements for this repo is in requirements.txt
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+### Prerequisites
+
+The list of requirements for this repo is in requirements.txt
+* pip
+  ```sh
+  pip install the requirements
+  ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
