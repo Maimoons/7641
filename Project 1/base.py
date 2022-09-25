@@ -22,8 +22,8 @@ def test(name, x_train, y_train, x_test, y_test, classes, dataset, filename):
     final_model = load_model(name)
     y_predict = final_model.predict(x_test)
     accuracy = accuracy_score(y_test, y_predict)
-    debug(("Test Accuracy: {0} \n").format(accuracy))
-    debug(("Final Train Accuracy: {0} \n").format(final_model.score(x_train, y_train)))
+    print(("Test Accuracy: {0} \n").format(accuracy))
+    print(("Final Train Accuracy: {0} \n").format(final_model.score(x_train, y_train)))
 
     metrics(y_test, y_predict, dataset, filename, classes)
     
@@ -138,8 +138,8 @@ def plot_train_val_curve(train_score, test_score, param_range, param_name, file_
     
     mean_test_score = np.mean(test_score, axis = 1)
     std_test_score = np.std(test_score, axis = 1)
-    debug(param_name, "Mean Train Score", mean_train_score, "\n")
-    debug(param_name, "Mean Test Score", mean_test_score, "\n")
+    print(param_name, "Mean Train Score", mean_train_score, "\n")
+    print(param_name, "Mean Test Score", mean_test_score, "\n")
 
     plt.plot(param_range, mean_train_score,
         label = "Training Score", color = 'b')
@@ -160,7 +160,8 @@ def plot_train_val_curve(train_score, test_score, param_range, param_name, file_
     alpha=0.2,
     color="g",
     lw=2,)
-    plt.title("Validation Curve")
+    plt.xticks(rotation=90)
+    plt.title("Validation Curve with Decision Tree Classifier")
     plt.xlabel(param_name)
     plt.ylabel("Accuracy")
     plt.tight_layout()
@@ -198,7 +199,7 @@ def get_train_time(best_classifier, x_train, y_train):
     best_classifier.fit(x_train, y_train)
     end_time = time.time()
     time_to_train = end_time - start_time
-    debug(("Time to Train: {0} \n").format(time_to_train))
+    print(("Time to Train: {0} \n").format(time_to_train))
 
 def metrics(y_test, y_pred, dataset, filename, classes):
     from sklearn.metrics import ConfusionMatrixDisplay
@@ -213,8 +214,8 @@ def metrics(y_test, y_pred, dataset, filename, classes):
     recall = recall_score(y_test,y_pred)
     c_matrix = confusion_matrix(y_test,y_pred)
     
-    debug(("f1: {0} \n accuracy: {1} precision: {2} \n recall: {3}").format(f1, accuracy, precision, recall))
-    debug(("Confusion Matrix: {0} \n").format(c_matrix))
+    print(("f1: {0} \n accuracy: {1} precision: {2} \n recall: {3}").format(f1, accuracy, precision, recall))
+    print(("Confusion Matrix: {0} \n").format(c_matrix))
 
     disp = ConfusionMatrixDisplay(confusion_matrix=c_matrix,
                                   display_labels=["0", "1"])
@@ -222,7 +223,7 @@ def metrics(y_test, y_pred, dataset, filename, classes):
     plt.savefig("./images/"+dataset+filename+"_cm")
     
     
-def plot_compare_models(train_times, test_times, test_accuracies, classifiers, dataset, filename):
+def plot_compare_models(train_times, test_times, test_accuracies, f1, precision, recall, classifiers, dataset):
   def times():
     fig, ax = pyplot.subplots()
     width = 0.3
@@ -235,23 +236,66 @@ def plot_compare_models(train_times, test_times, test_accuracies, classifiers, d
     ax.set_xticklabels(classifiers)
     ax.bar_label(train_bar, padding=2)
     ax.bar_label(test_bar, padding=2)
-    
+    plt.xticks(rotation=90)
+
     ax.legend()
     fig.tight_layout()
-    plt.savefig("./images/"+dataset+filename+"_models_time")
+    plt.savefig("./images/"+dataset+"_models_time")
+    plt.clf()
+  
+  def test_score():
+    fig, ax = pyplot.subplots()
+    bar = pyplot.bar(classifiers, test_accuracies)
+    #pyplot.set_xticks(xticks)
+    #pyplot.set_xticklabels(classifiers)
+    ax.bar_label(bar, padding=2)
+    ax.set_ylabel("Test Accuracy")
+    ax.set_title('Test Accuracy for the classifiers')
+    plt.xticks(rotation=90)
+    fig.tight_layout()
+    plt.savefig("./images/"+dataset+"_models_test")
     plt.clf()
   
   def scores():
-    pyplot.bar(classifiers, test_accuracies)
-    pyplot.set_xticklabels(classifiers)
-    pyplot.ylabel("Test Accuracy")
-    pyplot.title('Test Accuracy for the classifiers')
-    plt.savefig("./images/"+dataset+filename+"_models_scores")
+    fig, ax = pyplot.subplots()
+    width = 0.2
+    accuracy_bar = ax.bar(xticks, test_accuracies, width, label = 'Accuracy')
+    f1_bar = ax.bar(xticks + width, f1, width, label = 'F1')
+    precision_bar = ax.bar(xticks + 2*width, precision, width, label = 'Precision')
+    recall_bar = ax.bar(xticks + 3*width, recall, width, label = 'Recall')
+
+    ax.set_ylabel('Scores')
+    ax.set_title('Test Metrics')
+    ax.set_xticks(xticks+2*width)
+    ax.set_xticklabels(classifiers)
+    plt.xticks(rotation=90)
+    ax.legend()
+    fig.tight_layout()
+    plt.savefig("./images/"+dataset+"_models_scores")
     plt.clf()
 
   xticks = np.arange(len(classifiers))
   times()
+  test_score()
   scores()
 
+classifiers = ["DT", "Boosted DT", "ANN", "SVM", "KNN"]
 
-    
+bc_train_time = [0.0018067359924316406, 0.06789684295654297, 0.14522290229797363, 0.001252889633178711, 0.0005869865417480469]
+bc_test_time = [0.06498098373413086, 0.07267117500305176, 0.07519102096557617, 0.06551814079284668, 0.07495284080505371]
+bc_test_score = [0.8881118881118881, 0.9370629370629371, 0.9905660377358491, 0.951048951048951, 0.9230769230769231]
+bc_f1 = [0.9090909090909092, 0.9425287356321839, 0.96045197740113, 0.96 , 0.9371428571428572]
+bc_precision = [0.9302325581395349, 0.9764705882352941, 0.9770114942528736, 0.9882352941176471, 0.9647058823529412 ]
+bc_recall = [ 0.8888888888888888, 0.9222222222222223, 0.9444444444444444, 0.9333333333333333, 0.9111111111111111]
+
+plot_compare_models(bc_train_time, bc_test_time, bc_test_score, bc_f1, bc_precision, bc_recall, classifiers, "bc")
+ 
+titanic_train_time = [0.0017900466918945312, 0.014275074005126953, 1.0585441589355469, 0.011755943298339844, 0.0007789134979248047  ]
+titanic_test_time = [ 0.06725382804870605, 0.06751894950866699 , 0.09732794761657715, 0.1081380844116211, 0.08622407913208008]
+titanic_test_score = [0.8881118881118881, 0.8301435406698564 , 0.84688995215311, 0.8492822966507177,  0.8229665071770335]
+titanic_f1 = [ 0.9090909090909092 , 0.8135593220338982, 0.8048780487804879, 0.819484240687679, 0.7861271676300577]
+titanic_precision = [0.9302325581395349, 0.6956521739130435, 0.75, 0.7258883248730964, 0.7010309278350515 ]
+titanic_recall = [0.8888888888888888, 0.9473684210526315, 0.868421052631579, 0.9407894736842105, 0.8947368421052632 ]
+
+plot_compare_models(titanic_train_time, titanic_test_time, titanic_test_score, titanic_f1, titanic_precision, titanic_recall, classifiers, "titanic")
+ 

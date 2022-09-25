@@ -81,12 +81,11 @@ if __name__ == "__main__":
     x_train, y_train, x_test, y_test = load_dataset_0() if dataset_idx == 0 else load_dataset_1()  
     dataset = ["bc_", "titanic_"]
     classes = [["Malignant", "Benign"], ["Not Survived","Survived"]]
-    model_names = ["./models/nn_bc.pkl", "./models/nn_titanic.pkl"]
+    model_names = ["./models/neuralnet_bc.pkl", "./models/neuralnet_titanic.pkl"]
 
     # Data Information
     debug(("XTrain: {0} \n").format(x_train.describe()))
     debug(("YTrain: {0} \n").format(y_train.info()))
     debug(("YTrain Info: {0} \n").format(y_train.value_counts()))
-    
-    train_ANN(model_names[dataset_idx])
+    #train_ANN(model_names[dataset_idx])
     test_ANN(model_names[dataset_idx])
