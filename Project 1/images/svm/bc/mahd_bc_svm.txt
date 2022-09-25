@@ -1,0 +1,65 @@
+(7641) mahd@Mahds-Air Project 1 % /opt/miniconda3/envs/7641/bin/python "/Users/mahd/Downloads/7641-master/Project 1/svm.py"
+Columns to drop: ['mean perimeter', 'mean area', 'perimeter error', 'area error', 'worst radius', 'worst perimeter', 'worst area'] 
+
+XTrain:        mean radius  mean texture  mean smoothness  ...  worst concave points  worst symmetry  worst fractal dimension
+count   318.000000    318.000000       318.000000  ...            318.000000      318.000000               318.000000
+mean      0.206749      0.128836         0.077424  ...              0.203200        0.067777                 0.095068
+std       1.041426      1.007241         1.002879  ...              1.042038        1.104711                 1.043471
+min      -2.023041     -2.312656        -2.317862  ...             -1.758873       -2.106216                -1.603450
+25%      -0.559908     -0.580533        -0.677704  ...             -0.634396       -0.667923                -0.636888
+50%      -0.081498      0.095196         0.061712  ...              0.155942       -0.086990                -0.134197
+75%       0.895756      0.654964         0.717848  ...              1.006165        0.571848                 0.648392
+max       3.931794      3.540015         3.492692  ...              2.670375        5.918486                 6.974084
+
+[8 rows x 23 columns] 
+
+<class 'pandas.core.series.Series'>
+Int64Index: 318 entries, 2 to 5
+Series name: target
+Non-Null Count  Dtype
+--------------  -----
+318 non-null    int64
+dtypes: int64(1)
+memory usage: 5.0 KB
+YTrain: None 
+
+YTrain Info: 0    159
+1    159
+Name: target, dtype: int64 
+
+Regularization Parameter Mean Train Score [0.9331882  0.95442026 0.96620966 0.97406824 0.97642736 0.98192373
+ 0.98585765 0.98821368 0.98821368 0.98978231] 
+
+Regularization Parameter Mean Test Score [0.92470238 0.93412698 0.95615079 0.9625     0.9625     0.959375
+ 0.965625   0.96875    0.971875   0.971875  ] 
+
+Kernel Coefficient Mean Train Score [0.98899799 0.99292574 0.99685657 1.         1.         1.
+ 1.         1.         1.         1.        ] 
+
+Kernel Coefficient Mean Test Score [0.9655754  0.95302579 0.95302579 0.94662698 0.89623016 0.84280754
+ 0.7515873  0.68869048 0.68869048 0.68869048] 
+
+Fitting 5 folds for each of 400 candidates, totalling 2000 fits
+Best Parameters: {'C': 0.9258747122872907, 'gamma': 0.0625, 'kernel': 'linear'} 
+
+Ratio of Train Sizes Mean Train Score [1.         1.         0.99473684 0.99405941 0.99370079 0.99078947
+ 0.98757062 0.98916256 0.98859649 0.99133858] 
+
+Ratio of Train Sizes Mean Test Score [0.94027778 0.95297619 0.95605159 0.95610119 0.9624504  0.95610119
+ 0.95610119 0.96865079 0.9718254  0.97490079] 
+
+Time to Train: 0.001252889633178711 
+
+Test Accuracy: 0.951048951048951 
+
+Final Train Accuracy: 0.9905660377358491 
+
+f1: 0.96 
+ accuracy: 0.951048951048951 precision: 0.9882352941176471 
+ recall: 0.9333333333333333
+Confusion Matrix: [[52  1]
+ [ 6 84]] 
+
+Time to Test: 0.06551814079284668 
+
+(7641) mahd@Mahds-Air Project 1 % 

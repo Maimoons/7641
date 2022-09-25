@@ -1,0 +1,61 @@
+(7641) mahd@Mahds-Air Project 1 % /opt/miniconda3/envs/7641/bin/python "/Users/mahd/Downloads/7641-master/Project 1/svm.py"
+XTrain:        PassengerId       Pclass          Sex          Age        SibSp        Parch         Fare
+count  1098.000000  1098.000000  1098.000000  1098.000000  1098.000000  1098.000000  1098.000000
+mean     -0.021624    -0.111052     0.106857     0.010601    -0.007654     0.011317     0.069395
+std       1.015757     1.037098     1.027408     1.034430     0.946710     0.975422     1.052189
+min      -1.730108    -1.566107    -0.737695    -2.253155    -0.474545    -0.473674    -0.648422
+25%      -0.896157    -1.566107    -0.737695    -0.592481    -0.474545    -0.473674    -0.488854
+50%      -0.019439     0.827377    -0.737695     0.000000    -0.474545    -0.473674    -0.324253
+75%       0.850474     0.827377     1.355574     0.407926     0.432793     0.457304     0.095367
+max       1.730108     0.827377     1.355574     3.870872     6.784163     6.974147     9.667167 
+
+<class 'pandas.core.series.Series'>
+Int64Index: 1098 entries, 0 to 796
+Series name: target
+Non-Null Count  Dtype
+--------------  -----
+1098 non-null   int64
+dtypes: int64(1)
+memory usage: 17.2 KB
+YTrain: None 
+
+YTrain Info: 0    549
+1    549
+Name: target, dtype: int64 
+
+Regularization Parameter Mean Train Score [0.78551989 0.78893804 0.79554059 0.80646806 0.81557579 0.82104017
+ 0.83424735 0.84016679 0.84494883 0.85064048] 
+
+Regularization Parameter Mean Test Score [0.7477501  0.76049813 0.77234122 0.78052719 0.77962225 0.77599834
+ 0.78144458 0.77693649 0.76694064 0.75694479] 
+
+Kernel Coefficient Mean Train Score [0.81215971 0.83105906 0.8438104  0.85223372 0.86589648 0.88206053
+ 0.89731575 0.91097774 0.92737113 0.93784483] 
+
+Kernel Coefficient Mean Test Score [0.77324616 0.78418846 0.77239518 0.7505687  0.75238688 0.74325031
+ 0.73777501 0.70769199 0.67951847 0.65221669] 
+
+Fitting 5 folds for each of 400 candidates, totalling 2000 fits
+Best Parameters: {'C': 1.3607900001743771, 'gamma': 0.09921256574801246, 'kernel': 'rbf'} 
+
+Ratio of Train Sizes Mean Train Score [0.87356322 0.85142857 0.83726236 0.83475783 0.83143508 0.82927757
+ 0.82964169 0.83105413 0.83443038 0.83507973] 
+
+Ratio of Train Sizes Mean Test Score [0.75689083 0.76411374 0.77599419 0.76593192 0.77235782 0.77144458
+ 0.77417601 0.78146949 0.77418016 0.78602325] 
+
+Time to Train: 0.011755943298339844 
+
+Test Accuracy: 0.8492822966507177 
+
+Final Train Accuracy: 0.8333333333333334 
+
+f1: 0.819484240687679 
+ accuracy: 0.8492822966507177 precision: 0.7258883248730964 
+ recall: 0.9407894736842105
+Confusion Matrix: [[212  54]
+ [  9 143]] 
+
+Time to Test: 0.1081380844116211 
+
+(7641) mahd@Mahds-Air Project 1 % 

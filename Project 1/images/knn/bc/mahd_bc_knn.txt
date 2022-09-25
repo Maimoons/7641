@@ -1,0 +1,64 @@
+(7641) mahd@Mahds-Air Project 1 % /opt/miniconda3/envs/7641/bin/python "/Users/mahd/Downloads/7641-master/Project 1/knn.py"
+Columns to drop: ['mean perimeter', 'mean area', 'perimeter error', 'area error', 'worst radius', 'worst perimeter', 'worst area'] 
+
+XTrain:        mean radius  mean texture  mean smoothness  ...  worst concave points  worst symmetry  worst fractal dimension
+count   318.000000    318.000000       318.000000  ...            318.000000      318.000000               318.000000
+mean      0.206749      0.128836         0.077424  ...              0.203200        0.067777                 0.095068
+std       1.041426      1.007241         1.002879  ...              1.042038        1.104711                 1.043471
+min      -2.023041     -2.312656        -2.317862  ...             -1.758873       -2.106216                -1.603450
+25%      -0.559908     -0.580533        -0.677704  ...             -0.634396       -0.667923                -0.636888
+50%      -0.081498      0.095196         0.061712  ...              0.155942       -0.086990                -0.134197
+75%       0.895756      0.654964         0.717848  ...              1.006165        0.571848                 0.648392
+max       3.931794      3.540015         3.492692  ...              2.670375        5.918486                 6.974084
+
+[8 rows x 23 columns] 
+
+<class 'pandas.core.series.Series'>
+Int64Index: 318 entries, 2 to 5
+Series name: target
+Non-Null Count  Dtype
+--------------  -----
+318 non-null    int64
+dtypes: int64(1)
+memory usage: 5.0 KB
+YTrain: None 
+
+YTrain Info: 0    159
+1    159
+Name: target, dtype: int64 
+
+Number of Neighbors Mean Train Score [1.         0.98584839 0.97563069 0.97249035 0.96306006 0.96227574
+ 0.95834491 0.96150069 0.9599228  0.95992898] 
+
+Number of Neighbors Mean Test Score [0.96225198 0.96230159 0.94662698 0.94355159 0.95610119 0.95615079
+ 0.94672619 0.94990079 0.95302579 0.95927579] 
+
+Distance Metric Mean Train Score [0.97563069 0.98113015 0.97091246 0.96305388 0.97404971 0.92768874
+ 0.96935001 0.97563069 0.97563069] 
+
+Distance Metric Mean Test Score [0.94662698 0.94667659 0.96240079 0.93412698 0.94975198 0.88382937
+ 0.95610119 0.94662698 0.94662698] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Best Parameters: {'metric': 'minkowski', 'n_neighbors': 1, 'p': 1, 'weights': 'uniform'} 
+
+Ratio of Train Sizes Mean Train Score [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] 
+
+Ratio of Train Sizes Mean Test Score [0.90252976 0.92782738 0.94037698 0.94340278 0.95287698 0.95287698
+ 0.95595238 0.95595238 0.95595238 0.96220238] 
+
+Time to Train: 0.0005869865417480469 
+
+Test Accuracy: 0.9230769230769231 
+
+Final Train Accuracy: 1.0 
+
+f1: 0.9371428571428572 
+ accuracy: 0.9230769230769231 precision: 0.9647058823529412 
+ recall: 0.9111111111111111
+Confusion Matrix: [[50  3]
+ [ 8 82]] 
+
+Time to Test: 0.07495284080505371 
+
+(7641) mahd@Mahds-Air Project 1 % 

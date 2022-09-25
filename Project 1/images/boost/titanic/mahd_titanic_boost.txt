@@ -1,0 +1,61 @@
+(7641) mahd@Mahds-Air Project 1 % /opt/miniconda3/envs/7641/bin/python "/Users/mahd/Downloads/7641-master/Project 1/boost.py"
+XTrain:        PassengerId       Pclass          Sex          Age        SibSp        Parch         Fare
+count  1098.000000  1098.000000  1098.000000  1098.000000  1098.000000  1098.000000  1098.000000
+mean     -0.021624    -0.111052     0.106857     0.010601    -0.007654     0.011317     0.069395
+std       1.015757     1.037098     1.027408     1.034430     0.946710     0.975422     1.052189
+min      -1.730108    -1.566107    -0.737695    -2.253155    -0.474545    -0.473674    -0.648422
+25%      -0.896157    -1.566107    -0.737695    -0.592481    -0.474545    -0.473674    -0.488854
+50%      -0.019439     0.827377    -0.737695     0.000000    -0.474545    -0.473674    -0.324253
+75%       0.850474     0.827377     1.355574     0.407926     0.432793     0.457304     0.095367
+max       1.730108     0.827377     1.355574     3.870872     6.784163     6.974147     9.667167 
+
+<class 'pandas.core.series.Series'>
+Int64Index: 1098 entries, 0 to 796
+Series name: target
+Non-Null Count  Dtype
+--------------  -----
+1098 non-null   int64
+dtypes: int64(1)
+memory usage: 17.2 KB
+YTrain: None 
+
+YTrain Info: 0    549
+1    549
+Name: target, dtype: int64 
+
+Number of Estimators Mean Train Score [0.82968946 0.85269111 0.86840321 0.88046781 0.88934464 0.89503629
+ 0.90346169 0.91188786 0.91644134 0.9219052 ] 
+
+Number of Estimators Mean Test Score [0.61476131 0.62019095 0.55559983 0.52087173 0.49535907 0.45444583
+ 0.45262765 0.45445413 0.45354089 0.44807804] 
+
+Learning Rate Mean Train Score [0.80464884 0.80464884 0.80464884 0.81785239 0.8426717  0.89822355
+ 0.9731342  1.         0.35385728 0.42079294] 
+
+Learning Rate Mean Test Score [0.58463678 0.58463678 0.58463678 0.59560399 0.60830635 0.46080946
+ 0.46813616 0.51092154 0.34323371 0.32516812] 
+
+Fitting 5 folds for each of 100 candidates, totalling 500 fits
+Best Parameters: {'learning_rate': 0.05994842503189409, 'n_estimators': 20} 
+
+Ratio of Train Sizes Mean Train Score [0.92873563 0.89028571 0.8608365  0.86039886 0.84920273 0.83612167
+ 0.83908795 0.83504274 0.83974684 0.83439636] 
+
+Ratio of Train Sizes Mean Test Score [0.57994604 0.63384807 0.56438356 0.60921129 0.61286841 0.62012038
+ 0.59646326 0.59378165 0.59649232 0.62291822] 
+
+Time to Train: 0.014275074005126953 
+
+Test Accuracy: 0.8301435406698564 
+
+Final Train Accuracy: 0.8342440801457195 
+
+f1: 0.8022284122562675 
+ accuracy: 0.8301435406698564 precision: 0.6956521739130435 
+ recall: 0.9473684210526315
+Confusion Matrix: [[203  63]
+ [  8 144]] 
+
+Time to Test: 0.06751894950866699 
+
+(7641) mahd@Mahds-Air Project 1 % 

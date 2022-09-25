@@ -1,0 +1,60 @@
+(7641) mahd@Mahds-Air Project 1 % /opt/miniconda3/envs/7641/bin/python "/Users/mahd/Downloads/7641-master/Project 1/knn.py"
+XTrain:        PassengerId       Pclass          Sex          Age        SibSp        Parch         Fare
+count  1098.000000  1098.000000  1098.000000  1098.000000  1098.000000  1098.000000  1098.000000
+mean     -0.021624    -0.111052     0.106857     0.010601    -0.007654     0.011317     0.069395
+std       1.015757     1.037098     1.027408     1.034430     0.946710     0.975422     1.052189
+min      -1.730108    -1.566107    -0.737695    -2.253155    -0.474545    -0.473674    -0.648422
+25%      -0.896157    -1.566107    -0.737695    -0.592481    -0.474545    -0.473674    -0.488854
+50%      -0.019439     0.827377    -0.737695     0.000000    -0.474545    -0.473674    -0.324253
+75%       0.850474     0.827377     1.355574     0.407926     0.432793     0.457304     0.095367
+max       1.730108     0.827377     1.355574     3.870872     6.784163     6.974147     9.667167 
+
+<class 'pandas.core.series.Series'>
+Int64Index: 1098 entries, 0 to 796
+Series name: target
+Non-Null Count  Dtype
+--------------  -----
+1098 non-null   int64
+dtypes: int64(1)
+memory usage: 17.2 KB
+YTrain: None 
+
+YTrain Info: 0    549
+1    549
+Name: target, dtype: int64 
+
+Number of Neighbors Mean Train Score [1.         0.91075098 0.87614057 0.85860926 0.8442665  0.8278744
+ 0.8214986  0.81922173 0.81375528 0.81466877] 
+
+Number of Neighbors Mean Test Score [0.71224575 0.68589871 0.68950187 0.67676629 0.69314238 0.71775841
+ 0.71139062 0.72596513 0.72870486 0.73778331] 
+
+Distance Metric Mean Train Score [0.87614057 0.87249878 0.87819224 0.8784177  0.87932964 0.87340942
+ 0.88137897 0.87614057 0.87614057] 
+
+Distance Metric Mean Test Score [0.68950187 0.68313823 0.68949357 0.76144043 0.6858572  0.69949772
+ 0.69674554 0.68950187 0.68950187] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Best Parameters: {'metric': 'canberra', 'n_neighbors': 17, 'p': 1, 'weights': 'distance'} 
+
+Ratio of Train Sizes Mean Train Score [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.] 
+
+Ratio of Train Sizes Mean Test Score [0.70954753 0.72588211 0.74866335 0.76599004 0.77420091 0.78512246
+ 0.79422582 0.79423827 0.80515152 0.81880863] 
+
+Time to Train: 0.0007789134979248047 
+
+Test Accuracy: 0.8229665071770335 
+
+Final Train Accuracy: 1.0 
+
+f1: 0.7861271676300577 
+ accuracy: 0.8229665071770335 precision: 0.7010309278350515 
+ recall: 0.8947368421052632
+Confusion Matrix: [[208  58]
+ [ 16 136]] 
+
+Time to Test: 0.08622407913208008 
+
+(7641) mahd@Mahds-Air Project 1 % 
