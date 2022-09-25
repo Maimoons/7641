@@ -82,10 +82,10 @@ Follow the commands to setup and run the experiments:
 
 ### Prerequisites
 
-The list of requirements for this repo is in requirements.txt
+The list of requirements for this repo is in requirements.txt so pip install each e.g
 * pip
   ```sh
-  pip install the requirements
+  pip install numpy
   ```
 
 <!-- USAGE EXAMPLES -->
