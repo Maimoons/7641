@@ -103,6 +103,12 @@ Running  the classifier
 
 The above calls both the training and testing and saves the trained model. The output graphs are produced in the images folder.
 
+To plot training and testing time bar graphs - 
+Running  the classifier
+   ```sh
+   python base.py
+   ```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
