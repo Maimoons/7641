@@ -47,7 +47,7 @@ This contains code for the first Assignment in the course.
 It implements 5 classifiers:
  * Decision Treesv- decision_tree.py
  * Boosted Decision Trees - boost.py
- * Neural Network - neaural_network.py
+ * Neural Network - neural_network.py
  * SVM - svm.py
  * KNN - knn.py
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
