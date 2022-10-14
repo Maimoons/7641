@@ -179,14 +179,16 @@ def plot_fitness_loss(classifier, file_name, dataset, best_params):
     plt.savefig("./images/"+dataset+file_name)
     plt.clf()
 
-def plot_all_fitness_loss(fitness_curve_list, algorithms, problem, size):    
-    plt.title("Fitness Curve \n"+ problem)
+def plot_all_fitness_loss(fitness_curve_list, algorithms, problem, size): 
+    plt.title("Fitness Curve \n"+ problem + "\n Vector Size"+ str(size))
     plt.xlabel("Iterations")
     plt.ylabel("Fitness")
     for idx, fitness in enumerate(fitness_curve_list):
-        plt.plot(fitness[:,0], legend = algorithms[idx])
+        y = np.arange(1,fitness.shape[0]+1) 
+        plt.plot(y, fitness, label = algorithms[idx])
+    
     plt.legend(loc = 'best')
-    plt.savefig("./images/"+problem+"/fitness"+size+".png")
+    plt.savefig("./images/"+problem+"/all_fitness"+str(size)+".png")
     plt.clf()
     
 def plot_all_best_fitness(all_best_fitness_list, vectors, algorithms, problem):    
@@ -194,9 +196,9 @@ def plot_all_best_fitness(all_best_fitness_list, vectors, algorithms, problem):
     plt.xlabel("Vector Length")
     plt.ylabel("Fitness")
     for idx, fitness in enumerate(all_best_fitness_list):
-        plt.plot(vectors, fitness, legend = algorithms[idx])
+        plt.plot(vectors, fitness, label = algorithms[idx])
     plt.legend(loc = 'best')
-    plt.savefig("./images/"+problem+"/all_fitness.png")
+    plt.savefig("./images/"+problem+"/all_best_fitness.png")
     plt.clf()
     
 def plot_all_time_elapsed(all_time_elapsed_list, vectors, algorithms, problem):    
@@ -204,7 +206,7 @@ def plot_all_time_elapsed(all_time_elapsed_list, vectors, algorithms, problem):
     plt.xlabel("Vector Length")
     plt.ylabel("Time")
     for idx, fitness in enumerate(all_time_elapsed_list):
-        plt.plot(vectors, fitness, legend = algorithms[idx])
+        plt.plot(vectors, fitness, label = algorithms[idx])
     plt.legend(loc = 'best')
     plt.savefig("./images/"+problem+"/all_time.png")
     plt.clf()

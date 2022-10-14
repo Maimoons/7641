@@ -4,23 +4,18 @@ import time
 from base import *
 
     
-    
-def randomization(problem, fitness_list, state_vectors, parameters, maximize, isTSP = False):
+def randomization_CV(problem, fitness, parameters):
     
     def random_hill(problem_fit):        
-        start_time = time.time()
-        _, best_fitness, fitness_curve = mlrose_hiive.random_hill_climb(problem_fit,
-                                                random_state= 10,
-                                                restarts=parameters["restarts"],
+        runner = mlrose_hiive.RHCRunner(problem_fit,
+                                                seed= 10,
+                                                restart_list=parameters["restart_list"],
                                                 max_attempts=parameters["max_attempt"],
-                                                max_iters=parameters["max_iters"],
-                                                curve=True)
+                                                iteration_list=parameters["iteration_list"],
+                                                output_directory = "",
+                                                generate_curves=True)
         
-        time_elapsed = time.time()-start_time
-
-        all_time_elapsed_list[0].append(time_elapsed)
-        all_best_fitness_list[0].append(best_fitness)
-        fitness_curve_list.append(fitness_curve[:,0])
+        df_run_stats, df_run_curves = runner.run()
           
         
     def simulated_annealing(problem_fit):        
@@ -32,66 +27,63 @@ def randomization(problem, fitness_list, state_vectors, parameters, maximize, is
                                                 schedule=parameters["schedule"],
                                                 curve=True)
         time_elapsed = time.time()-start_time
-
+        
         all_time_elapsed_list[1].append(time_elapsed)
         all_best_fitness_list[1].append(best_fitness)
-        fitness_curve_list.append(fitness_curve[:,0])
+        fitness_curve_list.append(fitness_curve)
         
     def genetic_alg(problem_fit): 
         start_time = time.time()
         _, best_fitness, fitness_curve = mlrose_hiive.genetic_alg(problem_fit,
                                                 random_state= 10,
+                                                restarts=10,
                                                 max_attempts=parameters["max_attempt"],
                                                 max_iters=parameters["max_iters"],
-                                                pop_size=parameters["pop_size_genetic"],
+                                                pop_size=parameters["pop_size"],
                                                 mutation_prob=parameters["mutation_prob"],
                                                 curve=True)
         time_elapsed = time.time()-start_time
-
+        
         all_time_elapsed_list[2].append(time_elapsed)
         all_best_fitness_list[2].append(best_fitness)
-        fitness_curve_list.append(fitness_curve[:,0])
+        fitness_curve_list.append(fitness_curve)
         
         
     def mimic(problem_fit):
         start_time = time.time()
         _, best_fitness, fitness_curve = mlrose_hiive.mimic(problem_fit,
                                                 random_state= 10,
+                                                restarts=10,
                                                 max_attempts=parameters["max_attempt"],
                                                 max_iters=parameters["max_iters"],
-                                                pop_size=parameters["pop_size_mimic"],
+                                                pop_size=parameters["pop_size"],
+                                                fast_mimic=True,
                                                 curve=True)
         time_elapsed = time.time()-start_time
-
+        
         all_time_elapsed_list[3].append(time_elapsed)
         all_best_fitness_list[3].append(best_fitness)
-        fitness_curve_list.append(fitness_curve[:,0])
+        fitness_curve_list.append(fitness_curve)
 
-        
+    
+    
+    
+    state_vectors = np.arange(10, 101, 10)
+    
     algorithms = ['random_hill_climb', 'simulated_annealing', 'genetic_alg', 'mimic']
     
     all_best_fitness_list = [[] for _ in range(4)]
     all_time_elapsed_list = [[] for _ in range(4)]
     
-    for idx, state_vector in enumerate(state_vectors):
+    for state_vector in state_vectors:
         fitness_curve_list = []
-        fitness = fitness_list[idx]
-        if isTSP:
-            problem_fit = mlrose_hiive.TSPOpt(length = state_vector,fitness_fn = fitness,maximize = maximize)
-        else:
-            problem_fit = mlrose_hiive.DiscreteOpt(length = state_vector,fitness_fn = fitness,maximize = maximize)
-
+        problem_fit = mlrose_hiive.DiscreteOpt(length = state_vector,fitness_fn = fitness,maximize = True)
+        
         random_hill(problem_fit)
         simulated_annealing(problem_fit)
         genetic_alg(problem_fit)
         mimic(problem_fit)
         plot_all_fitness_loss(fitness_curve_list, algorithms, problem, state_vector)
-        #print("vector:", state_vector, "\n", "fitness:", fitness_curve_list, "\n")
-
 
     plot_all_best_fitness(all_best_fitness_list, state_vectors, algorithms, problem)
     plot_all_time_elapsed(all_time_elapsed_list, state_vectors, algorithms, problem)
-    print("best_fitness:", all_best_fitness_list, "\n")
-    print("time_elapsed:", all_time_elapsed_list, "\n")
-       
-
