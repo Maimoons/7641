@@ -296,3 +296,16 @@ def plot_compare_models(train_times, test_times, test_accuracies, f1, precision,
   scores()
 
 
+classifiers = ["Random Hill", "Simulated Annealing", "Genetic Algorithm"]
+
+titanic_train_time = [8.051584005355835, 2.6237659454345703, 59.07954668998718 ]
+titanic_test_time = [ 0.13482427597045898 , 0.13295412063598633  , 0.09161114692687988]
+titanic_test_score = [ 0.7105263157894737, 0.8971291866028708  , 0.8636363636363636]
+titanic_f1 = [  0.5953177257525083 , 0.8739002932551321, 0.8403361344537815 ]
+titanic_precision = [0.6054421768707483 , 0.7883597883597884, 0.7317073170731707]
+titanic_recall = [0.5855263157894737, 0.9802631578947368, 0.9868421052631579]
+
+plot_compare_models(titanic_train_time, titanic_test_time, titanic_test_score, titanic_f1, titanic_precision, titanic_recall, classifiers, "titanic")
+ 
+
+
