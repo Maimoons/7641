@@ -51,7 +51,7 @@ def genetic_alg(model_name):
     algorithm_name = "genetic_alg"
     
     parameters = {
-        "learning_rate": np.logspace(-4,1,5),
+        "learning_rate": [0.5],
         "pop_size": [i for i in range(100, 600, 100)],
         "mutation_prob": np.arange(0.1, 0.6, 0.1)
     }
@@ -114,8 +114,7 @@ if __name__ == "__main__":
         "learning_rate": np.logspace(-4,1,1),
     }
     
-    # Data Information
-    #random_hill(model_names[dataset_idx])
-    #simulated_annealing(model_names[dataset_idx])
+    random_hill(model_names[dataset_idx])
+    simulated_annealing(model_names[dataset_idx])
     genetic_alg(model_names[dataset_idx])
 
