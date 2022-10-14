@@ -10,9 +10,9 @@ if __name__ == "__main__":
     fitness = mlrose_hiive.Knapsack(weights, values)
 
     parameters = {
-        "restarts": 10,
         "max_attempts": 10,
-        "max_iters": 1000,
+        "iteration_list": [2000],
+        "restart_list": [10],
         "schedule": mlrose_hiive.GeomDecay(),
         "pop_size": 200,
         "mutation_prob": 0.2
