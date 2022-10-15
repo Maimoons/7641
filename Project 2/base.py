@@ -254,7 +254,6 @@ def plot_compare_models(train_times, test_times, test_accuracies, f1, precision,
     ax.set_xticklabels(classifiers)
     ax.bar_label(train_bar, padding=2)
     ax.bar_label(test_bar, padding=2)
-    plt.xticks(rotation=90)
 
     ax.legend()
     fig.tight_layout()
@@ -264,12 +263,10 @@ def plot_compare_models(train_times, test_times, test_accuracies, f1, precision,
   def test_score():
     fig, ax = pyplot.subplots()
     bar = pyplot.bar(classifiers, test_accuracies)
-    #pyplot.set_xticks(xticks)
-    #pyplot.set_xticklabels(classifiers)
     ax.bar_label(bar, padding=2)
     ax.set_ylabel("Test Accuracy")
     ax.set_title('Test Accuracy for the classifiers')
-    plt.xticks(rotation=90)
+    #plt.xticks(rotation=90)
     fig.tight_layout()
     plt.savefig("./images/"+dataset+"_models_test")
     plt.clf()
@@ -286,7 +283,7 @@ def plot_compare_models(train_times, test_times, test_accuracies, f1, precision,
     ax.set_title('Test Metrics')
     ax.set_xticks(xticks+2*width)
     ax.set_xticklabels(classifiers)
-    plt.xticks(rotation=90)
+    #plt.xticks(rotation=90)
     ax.legend()
     fig.tight_layout()
     plt.savefig("./images/"+dataset+"_models_scores")
@@ -298,7 +295,7 @@ def plot_compare_models(train_times, test_times, test_accuracies, f1, precision,
   scores()
 
 
-classifiers = ["Random Hill", "Simulated Annealing", "Genetic Algorithm"]
+classifiers = ["Random \n Hill", "Simulated \n Annealing", "Genetic \n Algorithm"]
 
 titanic_train_time = [8.051584005355835, 2.6237659454345703, 59.07954668998718 ]
 titanic_test_time = [ 0.13482427597045898 , 0.13295412063598633  , 0.09161114692687988]

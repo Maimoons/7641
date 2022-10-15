@@ -86,8 +86,6 @@ def randomization(problem, fitness_list, state_vectors, parameters, maximize, is
         genetic_alg(problem_fit)
         mimic(problem_fit)
         plot_all_fitness_loss(fitness_curve_list, algorithms, problem, state_vector)
-        #print("vector:", state_vector, "\n", "fitness:", fitness_curve_list, "\n")
-
 
     plot_all_best_fitness(all_best_fitness_list, state_vectors, algorithms, problem)
     plot_all_time_elapsed(all_time_elapsed_list, state_vectors, algorithms, problem)
