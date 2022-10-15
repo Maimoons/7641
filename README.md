@@ -5,9 +5,9 @@
     <img src="logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Supervider Learning</h3>
+<h3 align="center">Machine Learning</h3>
   <p align="center">
-    OMSCS 7641 - Assignment 1 
+    OMSCS 7641 
   </p>
 </div>
 
@@ -42,10 +42,22 @@
 ## About The Project
 Github Repo - https://github.com/Maimoons/7641/blob/master/README.md
 
+Project 2: Randomized Optimization
 
-This contains code for the first Assignment in the course.
+The folder: Project 2 contains code for the second assignment in the course.
+It implements 4 different problems:
+ * Neural Network- neural_network.py
+ * Knapsack - knapsack.py
+ * Traveling Salesman - tsp.py
+ * Continuous Peaks - continuos_peaks.py
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+Project 1: Supervised Learning
+
+The folder: Project 1 contains code for the first assignment in the course.
 It implements 5 classifiers:
- * Decision Treesv- decision_tree.py
+ * Decision Trees- decision_tree.py
  * Boosted Decision Trees - boost.py
  * Neural Network - neural_network.py
  * SVM - svm.py
@@ -55,7 +67,10 @@ It implements 5 classifiers:
 
 
 ### Built With
+Project 2 (the following on top of the dependencies from project 1)
+* MLrose --hiive
 
+Project 1
 * Numpy
 * Pandas
 * SkLearn
@@ -82,7 +97,7 @@ Follow the commands to setup and run the experiments:
 
 ### Prerequisites
 
-The list of requirements for this repo is in requirements.txt so pip install each e.g
+The list of requirements for this repo is in requirements.txt as well as defined above so pip install each e.g
 * pip
   ```sh
   pip install numpy
@@ -90,8 +105,43 @@ The list of requirements for this repo is in requirements.txt so pip install eac
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-There are two datasets used in thisa project.
-* Dataset 0 - Titanic dataset from Kagg;e
+
+<h3 align="center"> Project 2 </h3>
+
+The dataset used for the Neural Network problem - 
+* Dataset 0 - Titanic dataset from Kaggle
+
+Running  the classifier
+   ```sh
+   python neural_network.py
+   ```
+
+Running any of the second half of optimization problems
+
+   ```sh
+   python tsp.py
+   python knapsack.py
+   python continuos_peaks.py
+   ```
+
+The output graphs are produced in the images folder.
+
+To plot training and testing time bar graphs for Neural Network - 
+
+   ```sh
+   python base.py
+   ```
+
+<br>
+<br>
+   
+   
+   
+   
+<h3 align="center">Project 1</h3>
+
+There are two datasets used in this project.
+* Dataset 0 - Titanic dataset from Kaggle
 * Dataset 1 - Breast cancer dataset from sklearn
 
 The dataset index needs to be passed in to whatever classifier is being run. For example - 
