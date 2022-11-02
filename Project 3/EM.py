@@ -3,6 +3,8 @@ from sklearn.metrics import silhouette_score, homogeneity_score, silhouette_samp
 from sklearn.manifold import TSNE
 
 from scipy.spatial.distance import cdist
+from matplotlib.legend_handler import HandlerTuple
+
 import itertools
 from scipy import linalg
 
@@ -231,7 +233,7 @@ class EM():
                 gmm.means_[n, :2], v[0], v[1], 180 + angle, color=color
             )
             ell.set_clip_box(ax.bbox)
-            ell.set_alpha(0.5)
+            ell.set_alpha(0.35)
             ax.add_artist(ell)
             ax.set_aspect("equal", "datalim")
           
@@ -249,12 +251,7 @@ class EM():
         }
 
         n_estimators = len(estimators)
-
-        #plt.figure(figsize=(4 * n_estimators // 2, 6))
-        plt.subplots_adjust(
-            bottom=0.01, hspace=0.15, wspace=0.05, left=0.01, right=0.99
-        )
-
+        _, axes = plt.subplots(1, n_estimators)
 
         for index, (name, estimator) in enumerate(estimators.items()):
              # Since we have class labels for the training data, we can
@@ -269,16 +266,14 @@ class EM():
                
             y_labels = estimator.predict(self.x) 
             for i in range(best_k):
-                #data = self.x[y_labels == i]
                 transformed_data = self.transformed_x.iloc[y_labels == i]
-                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], s=0.8, color=colors[i], label="K="+str(i))
+                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], s=0.8, color=colors[i], label=i)
                
             y_labels_test = estimator.predict(self.x_test)  
             # Plot the test data with crosses
             for i in range(best_k):
-                #data = self.x_test[y_labels_test == i]
                 transformed_data = self.transformed_x.iloc[y_labels_test == i]
-                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], marker="x", color=colors[i])
+                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], marker="x", color=colors[i], label=i)
 
             y_train_pred = estimator.predict(self.x)
             y_train_pred = self.predict(self.y, y_train_pred, best_k)
@@ -294,7 +289,19 @@ class EM():
             plt.yticks(())
             plt.title(name)
 
-        plt.legend(scatterpoints=1, loc="lower right", prop=dict(size=12))
+        handles1, labels1 = axes[0].get_legend_handles_labels()
+        handles2, labels2 = axes[1].get_legend_handles_labels()
+        handles1, labels1 = handles1[:best_k], labels1[:best_k]
+        handles2, labels2 = handles2[best_k:2*best_k], labels2[best_k:2*best_k]
+        
+        plt.legend([(handles1[idx], handles2[idx]) for idx in range(best_k)],\
+            [labels1[idx] for idx in range(best_k)], \
+            handler_map={tuple: HandlerTuple(ndivide=2)}, \
+            loc="lower right", frameon=True, ncol=3, scatterpoints=1)\
+            .get_frame().set_edgecolor('black')
+        plt.subplots_adjust(
+            bottom=0.01, hspace=0.15, wspace=0.05, left=0.01, right=0.99
+        )
         plt.suptitle("Train and Test accuracies for different covariances Best K= "+str(best_k))
         plt.savefig("./images/"+self.dataset+"/EM/"+self.folder+"/best/"+"accuracies")
         plt.clf()
