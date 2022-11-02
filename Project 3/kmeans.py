@@ -165,7 +165,7 @@ class K_Means():
             mean, v[0], v[1], 180 + angle, color=color
         )
         ell.set_clip_box(ax.bbox)
-        ell.set_alpha(0.5)
+        ell.set_alpha(0.35)
         ax.add_artist(ell)
         ax.set_aspect("equal", "datalim")
           
@@ -192,7 +192,7 @@ class K_Means():
             for i in range(best_k):
                 #data = self.x[y_labels == i]
                 transformed_data = self.transformed_x.iloc[y_labels == i]
-                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], s=0.8, color = self.colors[i], label=i)
+                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], s=1.1, color = self.colors[i], label=i)
                 
                 covariances = np.cov(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1])
                 mean = (np.mean(transformed_data.iloc[:, 0]), np.mean(transformed_data.iloc[:, 1]))
@@ -219,7 +219,7 @@ class K_Means():
             plt.title(name)
 
         plt.suptitle("Train and Test accuracies for different covariances Best K= "+str(best_k))
-        plt.legend(scatterpoints=1, loc="lower right", prop=dict(size=12))
+        #plt.legend(scatterpoints=1, loc="lower right", prop=dict(size=12))
         plt.savefig("./images/"+self.dataset+"/kmeans/"+self.folder+"/best/"+"accuracies")
         plt.clf()
  
