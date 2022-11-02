@@ -76,7 +76,7 @@ def load_dataset_0():
     
     x_train, x_test = scale_data(x_train, x_test)
     #x_train, x_test = feature_selection(x_train, x_test)
-    x_train, y_train = resample_data(x_train, y_train)
+    #x_train, y_train = resample_data(x_train, y_train)
     
     return x_train, y_train, x_test, y_test
  
@@ -102,7 +102,7 @@ def load_dataset_1():
     y_test = submission_data['target'].copy()
     
     x_train, x_test = scale_data(x_train, x_test)
-    x_train, y_train = resample_data(x_train, y_train)
+    #x_train, y_train = resample_data(x_train, y_train)
     return x_train, y_train, x_test, y_test
 
   

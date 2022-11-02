@@ -5,8 +5,6 @@ from sklearn.manifold import TSNE
 
 from scipy.spatial.distance import cdist
 
-from yellowbrick.cluster import KElbowVisualizer
-
 from base import *
 
 class K_Means():
@@ -59,6 +57,7 @@ class K_Means():
         self.best_cluster(best_k, best_km, best_sse_idx)
 
     def plot_elbow(self, model):
+        from yellowbrick.cluster import KElbowVisualizer
         ax = plt.subplot(1, 1, 1)
         visualizer = KElbowVisualizer(model(), ax, k=(2, self.num_clusters))
         visualizer.fit(self.x)        
@@ -193,7 +192,7 @@ class K_Means():
             for i in range(best_k):
                 #data = self.x[y_labels == i]
                 transformed_data = self.transformed_x.iloc[y_labels == i]
-                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], s=0.8, color = self.colors[i], label="K="+str(i))
+                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], s=0.8, color = self.colors[i], label=i)
                 
                 covariances = np.cov(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1])
                 mean = (np.mean(transformed_data.iloc[:, 0]), np.mean(transformed_data.iloc[:, 1]))
@@ -204,7 +203,7 @@ class K_Means():
             for i in range(best_k):
                 #data = self.x_test[y_labels_test == i]
                 transformed_data = self.transformed_x_test[y_labels_test == i]
-                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], marker="x", color=self.colors[i])
+                plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], marker="x", color=self.colors[i], label=i)
 
             y_train_pred = estimator.predict(self.x)
             y_train_pred = self.predict(self.y, y_train_pred, best_k)
@@ -248,11 +247,15 @@ class K_Means():
                 #data = self.x[y_labels == i]
                 transformed_data = self.transformed_x.iloc[y_labels == i]
                 plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], marker="x")
+                centers = transformed_data.mean(axis=0)
+                plt.scatter(
+                centers[0], centers[1], s=75, marker="D", c="orange", lw=1.5, edgecolors="black"
+            )
 
-            centers= km.cluster_centers_
+            '''centers= km.cluster_centers_
             plt.scatter(
                 centers[:, 0], centers[:, 1], s=75, marker="D", c="orange", lw=1.5, edgecolors="black"
-            )
+            )'''
             relative_times[method] = times_init[method] / times_init[methods[0]]
 
             plt.xticks(())
@@ -269,26 +272,39 @@ class K_Means():
             
     def plot_clusters_labels(self, km, k_labels, best_k):
         x_transformed = self.transformed_x
-        centers = km.cluster_centers_
         
+        centers = km.cluster_centers_ 
         plt.scatter(x_transformed.iloc[:,0], x_transformed.iloc[:,1],  c=k_labels, cmap = "jet", edgecolor = "None", alpha=0.35)
-        #plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5)
         
-        plt.scatter(
+        '''plt.scatter(
         centers[:, 0],
         centers[:, 1],
         marker="o",
         c="white",
         alpha=1,
         s=200,
-        edgecolor="k",)
+        edgecolor="k",)'''
         
-        for i, center in enumerate(centers):    
-            plt.scatter(center[0], center[1], marker="$%d$" % i, alpha=1, s=50, edgecolor="k", label = "K="+str(i))
+        for i in range(best_k):
+            #data = self.x[y_labels == i]
+            transformed_data = self.transformed_x.iloc[k_labels == i]
+            centers = transformed_data.mean(axis=0)
+            plt.scatter(
+                centers[0],
+                centers[1],
+                marker="o",
+                c="white",
+                alpha=1,
+                s=200,
+                edgecolor="k",)
+            plt.scatter(centers[0], centers[1], marker="$%d$" % i, alpha=1, s=50, edgecolor="k", label = "K="+str(i))
+            
+        '''for i, center in enumerate(centers):    
+            plt.scatter(center[0], center[1], marker="$%d$" % i, alpha=1, s=50, edgecolor="k", label = "K="+str(i))'''
         
         plt.title('kMeans Clusters with Best K= '+ str(best_k))
-        plt.xlabel("Feature 1")
-        plt.ylabel("Feature 2")
+        plt.xlabel("Transformed Feature 1")
+        plt.ylabel("Transformed Feature 2")
         #plt.legend(loc = 'best')
         plt.savefig("./images/"+self.dataset+"/kmeans/"+self.folder+"/best/"+"clusters_labels")
         plt.clf()
@@ -297,17 +313,18 @@ class K_Means():
         _, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
         
         for i, class_ in enumerate(self.classes):
-            transformed_data = self.transformed_x[y_pred == i]
+            transformed_data = self.transformed_x.iloc[y_pred == i]
             ax1.scatter(transformed_data.iloc[:,0],transformed_data.iloc[:,1], cmap = "jet", edgecolor = "None", alpha=0.35, label=class_)
         ax1.set_title('KMeans Prediction')
         
         for i, class_ in enumerate(self.classes):
-            transformed_data = self.transformed_x[self.y == i]
+            y = self.y.to_numpy()
+            transformed_data = self.transformed_x.iloc[y == i]
             ax2.scatter(transformed_data.iloc[:,0],transformed_data.iloc[:,1], cmap = "jet", edgecolor = "None", alpha=0.35, label=class_)
         ax2.set_title('Original Labels')
         
-        plt.xlabel("Feature 1")
-        plt.ylabel("Feature 2")
+        plt.xlabel("Transformed Feature 1")
+        plt.ylabel("Transformed Feature 2")
         plt.suptitle("Predictions Vs the Original lables clustering Best K= "+str(best_k))
         plt.legend(loc = 'best')
         plt.savefig("./images/"+self.dataset+"/kmeans/"+self.folder+"/best/"+"clusters_pred")

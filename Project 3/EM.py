@@ -192,10 +192,12 @@ class EM():
                 #data = self.x[y_labels == i]
                 transformed_data = self.transformed_x.iloc[y_labels == i]
                 plt.scatter(transformed_data.iloc[:, 0], transformed_data.iloc[:, 1], marker="x")
-
-            plt.scatter(
+                centers = transformed_data.mean(axis=0)
+                plt.scatter(centers[0], centers[1], s=75, marker="D", c="orange", lw=1.5, edgecolors="black")
+                
+            '''plt.scatter(
                 ini[:, 0], ini[:, 1], s=75, marker="D", c="orange", lw=1.5, edgecolors="black"
-            )
+            )'''
             relative_times[method] = times_init[method] / times_init[methods[0]]
 
             plt.xticks(())
@@ -363,25 +365,39 @@ class EM():
         
     def plot_clusters_labels(self, km, k_labels, best_k):
         x_transformed = self.transformed_x
-        centers = km.cluster_centers_
         
+        centers = km.cluster_centers_ 
         plt.scatter(x_transformed.iloc[:,0], x_transformed.iloc[:,1],  c=k_labels, cmap = "jet", edgecolor = "None", alpha=0.35)
-        #plt.scatter(centers[:, 0], centers[:, 1], c='black', s=200, alpha=0.5)
-        plt.scatter(
+        
+        '''plt.scatter(
         centers[:, 0],
         centers[:, 1],
         marker="o",
         c="white",
         alpha=1,
         s=200,
-        edgecolor="k",)
-       
-        for i, center in enumerate(centers):    
-            plt.scatter(center[0], center[1], marker="$%d$" % i, alpha=1, s=50, edgecolor="k",label = "K="+str(i))
+        edgecolor="k",)'''
+        
+        for i in range(best_k):
+            #data = self.x[y_labels == i]
+            transformed_data = self.transformed_x.iloc[k_labels == i]
+            centers = transformed_data.mean(axis=0)
+            plt.scatter(
+                centers[0],
+                centers[1],
+                marker="o",
+                c="white",
+                alpha=1,
+                s=200,
+                edgecolor="k",)
+            plt.scatter(centers[0], centers[1], marker="$%d$" % i, alpha=1, s=50, edgecolor="k", label = "K="+str(i))
+            
+        '''for i, center in enumerate(centers):    
+            plt.scatter(center[0], center[1], marker="$%d$" % i, alpha=1, s=50, edgecolor="k", label = "K="+str(i))'''
         
         plt.title('kMeans Clusters with Best K= '+ str(best_k))
-        plt.xlabel("Feature 1")
-        plt.ylabel("Feature 2")
+        plt.xlabel("Transformed Feature 1")
+        plt.ylabel("Transformed Feature 2")
         #plt.legend(loc = 'best')
         plt.savefig("./images/"+self.dataset+"/EM/"+self.folder+"/best/"+"clusters_labels")
         plt.clf()
@@ -390,17 +406,18 @@ class EM():
         _, (ax1, ax2) = plt.subplots(1, 2, sharey=True)
         
         for i, class_ in enumerate(self.classes):
-            transformed_data = self.transformed_x[y_pred == i]
+            transformed_data = self.transformed_x.iloc[y_pred == i]
             ax1.scatter(transformed_data.iloc[:,0],transformed_data.iloc[:,1], cmap = "jet", edgecolor = "None", alpha=0.35, label=class_)
-        ax1.set_title('KMeans Prediction')
+        ax1.set_title('EM Prediction')
         
         for i, class_ in enumerate(self.classes):
-            transformed_data = self.transformed_x[self.y == i]
+            y = self.y.to_numpy()
+            transformed_data = self.transformed_x.iloc[y == i]
             ax2.scatter(transformed_data.iloc[:,0],transformed_data.iloc[:,1], cmap = "jet", edgecolor = "None", alpha=0.35, label=class_)
         ax2.set_title('Original Labels')
         
-        plt.xlabel("Feature 1")
-        plt.ylabel("Feature 2")
+        plt.xlabel("Transformed Feature 1")
+        plt.ylabel("Transformed Feature 2")
         plt.suptitle("Predictions Vs the Original lables clustering Best K= "+str(best_k))
         plt.legend(loc = 'best')
         plt.savefig("./images/"+self.dataset+"/EM/"+self.folder+"/best/"+"clusters_pred")
@@ -456,10 +473,9 @@ class EM():
               
     def get_transformed(self, data):
         #Creating a 2D visualization
-        #tsne = TSNE(verbose= self.verbose, perplexity=40, n_iter= 300)
-        #return tsne.fit_transform(data)
-        #return data.iloc[:, 0:2]
-        return data.loc[:, self.transformed_cols]
+        tsne = TSNE(verbose= self.verbose, perplexity=40, n_iter= 300)
+        return pd.DataFrame(tsne.fit_transform(data))
+        #return data.loc[:, self.transformed_cols]
     
     def get_cmap(self,n, name='hsv'):
         '''Returns a function that maps each index in 0, 1, ..., n-1 to a distinct 

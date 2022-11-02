@@ -17,7 +17,7 @@ def small_datatset():
     x_train, y_train, x_test, y_test = x_train.head(10), y_train.head(10), x_test.head(10), y_test.head(10)
 
 if __name__ == "__main__":
-    dataset_idx = 1
+    dataset_idx = 0
     if len(sys.argv) == 2: 
         dataset_idx = sys.argv[1]
         
