@@ -9,7 +9,7 @@ from matplotlib.legend_handler import HandlerTuple
 from base import *
 
 class K_Means():
-    def __init__(self, x, y, x_test, y_test, dataset, classes, transformed_columns, verbose = 0, folder = ""):
+    def __init__(self, x, y, x_test, y_test, dataset, classes, transformed_columns, verbose = 0, folder = "original/):
         self.num_clusters = 15
         self.algorithms = [KMeans, BisectingKMeans]
         self.algorithms_n = ['KMeans', 'BisectingKMeans']
@@ -48,6 +48,7 @@ class K_Means():
                     best_km = Algorithm; best_sse_idx = i
          
         best_k = self.plot_elbow(best_km)
+        plt.clf()
         self.plot_score_chart('wcss', 'The Elbow with WCSS', self.wcss)
         self.plot_score_chart('distortion', 'Distortion: Average Error from the center', self.distortion)   
         self.plot_score_chart('sil', 'Silhouette Score', self.sil)   
