@@ -11,7 +11,7 @@ from scipy import linalg
 from base import *
 
 class EM():
-    def __init__(self, x, y, x_test, y_test, dataset, classes, transformed_cols, verbose = 0, folder = "original/):
+    def __init__(self, x, y, x_test, y_test, dataset, classes, transformed_cols, verbose = 0, folder = "original/"):
         self.num_clusters = 15
         self.cv_types = ["spherical", "tied", "diag", "full"]
         self.x = x
