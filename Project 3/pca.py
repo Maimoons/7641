@@ -5,7 +5,7 @@ import seaborn as sns
 from base import *
 
 class PrincipalComponenetAnalysis():
-    def __init__(self, x, y, x_test, y_test, dataset, classes, verbose = 0, folder = "original/"):
+    def __init__(self, x, y, x_test, y_test, dataset, classes, verbose = 0, folder = "original/", run_plot = True):
         self.x = x
         self.y = y
         self.x_test = x_test
@@ -14,8 +14,9 @@ class PrincipalComponenetAnalysis():
         self.verbose = verbose
         self.classes = classes
         self.folder = folder
+        self.run_plot = run_plot
 
-    def run_pca(self):
+    def run(self):
         self.verbose = 0
         
         start = time.time()
@@ -29,13 +30,14 @@ class PrincipalComponenetAnalysis():
         self.x_test_pca = pca.transform(self.x_test)
         self.eigenvecs = pca.components_
         self.eigenvals = pca.explained_variance_
-        
-        print("Mean Reconstruction Error: ", self.mean_reconstruction_error(pca, self.x_pca))
-        self.plot_variances(pca)
-        self.plot_cum_variance(pca)
-        self.plot_2D(self.x_pca, self.y, self.eigenvals)
-        self.plot_3D(self.x_pca, self.y)
-        self.plot_heat_map(pca)
+        if self.run_plot:
+            print("Mean Reconstruction Error: ", self.mean_reconstruction_error(pca, self.x_pca))
+            self.plot_variances(pca)
+            self.plot_cum_variance(pca)
+            self.plot_2D(self.x_pca, self.y, self.eigenvals)
+            self.plot_3D(self.x_pca, self.y)
+            self.plot_heat_map(pca)
+        return self.x_pca, self.x_test_pca
  
     def mean_reconstruction_error(self, pca, x_pca):
         "ref https://www.kaggle.com/code/ericlikedata/reconstruct-error-of-pca/notebook"

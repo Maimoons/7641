@@ -6,7 +6,7 @@ import seaborn as sns
 from base import *
 
 class RandomForest():
-    def __init__(self, x, y, x_test, y_test, dataset, classes, verbose = 0, folder = "original/"):
+    def __init__(self, x, y, x_test, y_test, dataset, classes, verbose = 0, folder = "original/", run_plot=True):
         self.x = x
         self.y = y
         self.x_test = x_test
@@ -15,8 +15,9 @@ class RandomForest():
         self.verbose = verbose
         self.classes = classes
         self.folder = folder
+        self.run_plot = run_plot
 
-    def run_rf(self):
+    def run(self):
         self.verbose = 0
         
         rf = RandomForestClassifier(random_state=10, n_estimators=10)
@@ -34,9 +35,12 @@ class RandomForest():
         importances =  rfecv.estimator_.feature_importances_ 
         indices = np.argsort(importances)[::-1]
         
-        self.plot_2D(self.x_rf, self.y, self.calculate_eigenvalues(self.x_rf))
-        self.plot_3D(self.x, self.y)
-        self.variable_importance_plot(importances, indices, selected_features)
+        if self.run_plot:
+            self.plot_2D(self.x_rf, self.y, self.calculate_eigenvalues(self.x_rf))
+            self.plot_3D(self.x, self.y)
+            self.variable_importance_plot(importances, indices, selected_features)
+            
+        return self.x_rf, self.x_test_rf
  
     def calculate_eigenvalues(self, x_rf):
         cov_matrix = np.cov(x_rf.T)

@@ -18,14 +18,14 @@ import matplotlib.pyplot as pyplot
 from sklearn.model_selection import GridSearchCV
 import sys  		  	   		  	  		  		  		    	 		 		   		 		  
 
-def test(name, x_train, y_train, x_test, y_test, classes, dataset, filename):
+def test(name, x_train, y_train, x_test, y_test, classes, dataset, filename, verbose):
     final_model = load_model(name)
     y_predict = final_model.predict(x_test)
     accuracy = accuracy_score(y_test, y_predict)
     print(("Test Accuracy: {0} \n").format(accuracy))
     print(("Final Train Accuracy: {0} \n").format(final_model.score(x_train, y_train)))
 
-    metrics(y_test, y_predict, dataset, filename)
+    metrics(y_test, y_predict, dataset, filename, verbose=verbose)
     
 def scale_data(x_train, x_test):
     scaler = StandardScaler()
@@ -210,7 +210,31 @@ def plot_all_time_elapsed(all_time_elapsed_list, vectors, algorithms, problem):
     plt.savefig("./images/"+problem+"/all_time.png")
     plt.clf()
     
-
+def plot_epochs(scores_train, scores_val, loss_curve, file_name, dataset):
+    plt.plot(scores_train,
+        label = "Training Score", color = 'b')
+    
+    plt.plot(scores_val,
+        label = "Validation Score", color = 'g')
+    
+    plt.title("Accuracy over Epochs")
+    plt.xlabel("# of Epoch")
+    plt.ylabel("Accuracy")
+    plt.tight_layout()
+    plt.legend(loc = 'best')
+    plt.savefig("./images/"+dataset+file_name)
+    plt.clf()
+    
+    plt.plot(loss_curve,
+        label = "Loss", color = 'b')
+    plt.title("Loss over Epochs")
+    plt.xlabel("# of Epoch")
+    plt.ylabel("Loss")
+    plt.tight_layout()
+    plt.legend(loc = 'best')
+    plt.savefig("./images/"+dataset+file_name+"loss")
+    plt.clf()
+    
 def get_train_time(best_classifier, x_train, y_train):
     start_time = time.time()
     best_classifier.fit(x_train, y_train)

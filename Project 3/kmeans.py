@@ -9,7 +9,7 @@ from matplotlib.legend_handler import HandlerTuple
 from base import *
 
 class K_Means():
-    def __init__(self, x, y, x_test, y_test, dataset, classes, transformed_columns, verbose = 0, folder = "original/):
+    def __init__(self, x, y, x_test, y_test, dataset, classes, transformed_columns, verbose = 0, folder = "original/", run_plot=False):
         self.num_clusters = 15
         self.algorithms = [KMeans, BisectingKMeans]
         self.algorithms_n = ['KMeans', 'BisectingKMeans']
@@ -32,6 +32,7 @@ class K_Means():
         self.classes = classes
         self.map = self.get_cmap(self.num_clusters)
         self.colors = [self.map(i) for i in range(self.num_clusters)]
+        self.run_plot = run_plot
            
     def run_kmeans(self):
         self.verbose = 0
@@ -49,22 +50,27 @@ class K_Means():
          
         best_k = self.plot_elbow(best_km)
         plt.clf()
-        self.plot_score_chart('wcss', 'The Elbow with WCSS', self.wcss)
-        self.plot_score_chart('distortion', 'Distortion: Average Error from the center', self.distortion)   
-        self.plot_score_chart('sil', 'Silhouette Score', self.sil)   
-        self.plot_score_chart('hmg', 'Homogenous Score', self.hmg)   
-        self.plot_time()
+        if self.run_plot:
+            self.plot_score_chart('wcss', 'The Elbow with WCSS', self.wcss)
+            self.plot_score_chart('distortion', 'Distortion: Average Error from the center', self.distortion)   
+            self.plot_score_chart('sil', 'Silhouette Score', self.sil)   
+            self.plot_score_chart('hmg', 'Homogenous Score', self.hmg)   
+            self.plot_time()
         
         print(("Best KM: {0} Best k: {1}\n").format(best_km, best_k))
-        self.best_cluster(best_k, best_km, best_sse_idx)
+        best = self.best_cluster(best_k, best_km, best_sse_idx)
+        return best.labels_, best.predict(self.x_test)
 
     def plot_elbow(self, model):
         from yellowbrick.cluster import KElbowVisualizer
         ax = plt.subplot(1, 1, 1)
         visualizer = KElbowVisualizer(model(), ax, k=(2, self.num_clusters))
-        visualizer.fit(self.x)        
-        visualizer.show(outpath="./images/"+self.dataset+"/kmeans/"+self.folder+"/best/elbow_method")
-        #plt.clf() 
+        visualizer.fit(self.x)   
+        if self.run_plot:     
+            visualizer.show(outpath="./images/"+self.dataset+"/kmeans/"+self.folder+"/best/elbow_method")
+        else:
+            visualizer.show(outpath="./dummy")
+
         return visualizer.elbow_value_
           
     def best_cluster(self, best_k, Algorithm, algo_idx):
@@ -73,14 +79,14 @@ class K_Means():
         y_labels = km.labels_
         y_pred = self.predict(self.y, y_labels, best_k)
 
-        self.plot_clusters_labels(km, y_labels, best_k)
-        self.plot_clusters_pred(y_pred, best_k)
-        self.plot_distribution(y_labels, best_k)
-        self.plot_silhouette(best_k, y_labels, algo_idx)
-        self.plot_accuracies(best_k)
-        self.different_init(best_k, Algorithm)
+        if self.run_plot:
+            self.plot_clusters_labels(km, y_labels, best_k)
+            self.plot_clusters_pred(y_pred, best_k)
+            self.plot_distribution(y_labels, best_k)
+            self.plot_silhouette(best_k, y_labels, algo_idx)
+            self.plot_accuracies(best_k)
+            self.different_init(best_k, Algorithm)
         
-        # run test
         return km
     
     def predict(self, y_true, y_labels, k):
@@ -103,6 +109,7 @@ class K_Means():
                                 random_state= 10,
                                 verbose = 0)
         start_time = time.time()
+        #print("Clusters", km.n_clusters)
         km.fit(self.x)
         time_to_train = time.time() - start_time
         y_labels = km.predict(self.x)

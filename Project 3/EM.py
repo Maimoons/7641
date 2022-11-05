@@ -11,7 +11,7 @@ from scipy import linalg
 from base import *
 
 class EM():
-    def __init__(self, x, y, x_test, y_test, dataset, classes, transformed_cols, verbose = 0, folder = "original/"):
+    def __init__(self, x, y, x_test, y_test, dataset, classes, transformed_cols, verbose = 0, folder = "original/", run_plot= False):
         self.num_clusters = 15
         self.cv_types = ["spherical", "tied", "diag", "full"]
         self.x = x
@@ -34,6 +34,7 @@ class EM():
         self.classes = classes
         self.map = self.get_cmap(self.num_clusters)
         self.colors = [self.map(i) for i in range(self.num_clusters)]
+        self.run_plot = run_plot
   
     def run_EM(self):
         self.verbose = 0
@@ -47,19 +48,21 @@ class EM():
                 if self.bic[i][-1] < lowest_bic:
                     lowest_bic = self.bic[i][-1]
                     best_gmm = em; best_k = k; best_cv_idx = i
-                            
-        self.plot_score_chart('logprob', 'The Log Probability', self.score)
-        #self.plot_score_chart('distortion', 'Distortion: Average Error from the center', self.distortion)   
-        self.plot_score_chart('sil', 'Silhouette Score', self.sil)   
-        self.plot_score_chart('hmg', 'Homogenous Score', self.hmg)   
-        self.plot_score_chart('aic', 'Akaike Information', self.aic)   
-        self.plot_score_chart('bic', 'Bayesian Information', self.bic)
-        self.plot_time()
+            
+        if self.run_plot:                
+            self.plot_score_chart('logprob', 'The Log Probability', self.score)
+            #self.plot_score_chart('distortion', 'Distortion: Average Error from the center', self.distortion)   
+            self.plot_score_chart('sil', 'Silhouette Score', self.sil)   
+            self.plot_score_chart('hmg', 'Homogenous Score', self.hmg)   
+            self.plot_score_chart('aic', 'Akaike Information', self.aic)   
+            self.plot_score_chart('bic', 'Bayesian Information', self.bic)
+            self.plot_time()
           
-        self.plot_bic(self.bic, best_gmm, self.num_clusters)  
+            self.plot_bic(self.bic, best_gmm, self.num_clusters)  
         
         print(("Best GMM: {0} Best k: {1}\n").format(best_gmm.covariance_type, best_k))
-        self.best_cluster(best_k, best_gmm.covariance_type, best_cv_idx)
+        best = self.best_cluster(best_k, best_gmm.covariance_type, best_cv_idx)
+        return best.labels_, best.predict(self.x_test)
 
      
     def get_accuracies(self, em):
@@ -75,12 +78,13 @@ class EM():
         em, y_labels = self.EM(best_k, cv_type, cv_idx)
         y_pred = self.predict(self.y, y_labels, best_k)
         
-        self.plot_clusters_labels(em, y_labels, best_k)
-        self.plot_clusters_pred(y_pred, best_k)
-        self.plot_distribution(y_labels, best_k)
-        self.plot_silhouette(best_k, y_labels, cv_idx)
-        self.plot_accuracies(best_k)
-        self.different_init(best_k)
+        if self.run_plot:
+            self.plot_clusters_labels(em, y_labels, best_k)
+            self.plot_clusters_pred(y_pred, best_k)
+            self.plot_distribution(y_labels, best_k)
+            self.plot_silhouette(best_k, y_labels, cv_idx)
+            self.plot_accuracies(best_k)
+            self.different_init(best_k)
         return em
     
     def predict(self, y_true, y_labels, k):

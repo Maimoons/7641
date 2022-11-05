@@ -8,7 +8,7 @@ import seaborn as sns
 from base import *
 
 class IndependentComponentAnalysis():
-    def __init__(self, x, y, x_test, y_test, dataset, classes, verbose = 0, folder = "original/"):
+    def __init__(self, x, y, x_test, y_test, dataset, classes, verbose = 0, folder = "original/", run_plot = True):
         self.x = x
         self.y = y
         self.x_test = x_test
@@ -17,8 +17,9 @@ class IndependentComponentAnalysis():
         self.verbose = verbose
         self.classes = classes
         self.folder = folder
+        self.run_plot = run_plot
 
-    def run_ica(self):
+    def run(self):
         self.verbose = 0
         
         components = len(self.x.columns)
@@ -30,25 +31,27 @@ class IndependentComponentAnalysis():
             kurt = abs(kurtosis(x_ica, axis=0)).mean()
             avg_kurtosis.append(kurt)
            
-        self.plot_kurtosis(avg_kurtosis)
+        if self.run_plot:
+            self.plot_kurtosis(avg_kurtosis)
         best_components = np.argmax(avg_kurtosis)+2
-        self.best_ica(best_components)
+        return self.best_ica(best_components)
   
 
     def best_ica(self, best_components):
         start = time.time()
         ica = FastICA(n_components=best_components, random_state=10, whiten='unit-variance', max_iter=2000, tol=1e-3)
         self.x_ica = ica.fit_transform(self.x)
-        print("Best Components: ", best_components)
-        print("Time ICA: ", time.time() - start)
-        print("Mean Reconstruction Error: ",self.mean_reconstruction_error(ica, self.x_ica))
-
         self.x_test_ica = ica.transform(self.x_test)
-        self.plot_2D(self.x_ica, self.y, self.calculate_eigenvalues(self.x_ica))
-        self.plot_3D(self.x_ica, self.y)
-        self.plot_heat_map(ica)
- 
+        print("Time ICA: ", time.time() - start)
 
+        if self.run_plot:
+            print("Best Components: ", best_components)
+            print("Mean Reconstruction Error: ",self.mean_reconstruction_error(ica, self.x_ica))
+            self.plot_2D(self.x_ica, self.y, self.calculate_eigenvalues(self.x_ica))
+            self.plot_3D(self.x_ica, self.y)
+            self.plot_heat_map(ica)
+        return self.x_ica, self.x_test_ica 
+ 
         
     def mean_reconstruction_error(self, ica, x_ica):
         "ref https://www.kaggle.com/code/ericlikedata/reconstruct-error-of-pca/notebook"
