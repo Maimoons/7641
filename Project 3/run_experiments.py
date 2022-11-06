@@ -146,7 +146,7 @@ def small_datatset():
     x_train, y_train, x_test, y_test = x_train.head(50), y_train.head(50), x_test.head(10), y_test.head(10)
 
 if __name__ == "__main__":
-    dataset_idx = 0
+    dataset_idx = 1
     if len(sys.argv) == 2: 
         dataset_idx = sys.argv[1]
         
@@ -158,19 +158,19 @@ if __name__ == "__main__":
     dataset = datasets[dataset_idx]
     #small_datatset()
     # Data Information
-    #print(("XTrain: {0} \n").format(x_train.describe()))
-    #print(("YTrain: {0} \n").format(y_train.info()))
-    #print(("YTrain Info: {0} \n").format(y_train.value_counts()))
+    print(("XTrain: {0} \n").format(x_train.describe()))
+    print(("YTrain: {0} \n").format(y_train.info()))
+    print(("YTrain Info: \n{0} \n").format(y_train.value_counts()))
     
     '''Experiments runs'''
-    #run_kmeans()
-    #run_EM()
-    #run_pca()
-    #run_ica()
-    #run_grp()
-    #run_rf()
+    run_kmeans()
+    run_EM()
+    run_pca()
+    run_ica()
+    run_grp()
+    run_rf()
     
-    #run_kmeans_with_dim_reduction()
-    #run_EM_with_dim_reduction()
-    #run_nn_dim_red()
+    run_kmeans_with_dim_reduction()
+    run_EM_with_dim_reduction()
+    run_nn_dim_red()
     run_nn_dim_red_with_clustering()
