@@ -103,7 +103,7 @@ def load_dataset_1():
     y_test = submission_data['target'].copy()
     
     x_train, x_test = scale_data(x_train, x_test)
-    x_train, y_train = resample_data(x_train, y_train)
+    #x_train, y_train = resample_data(x_train, y_train)
     return x_train, y_train, x_test, y_test
 
   
@@ -288,7 +288,7 @@ bc_f1 = [0.9090909090909092, 0.9425287356321839, 0.96045197740113, 0.96 , 0.9371
 bc_precision = [0.9302325581395349, 0.9764705882352941, 0.9770114942528736, 0.9882352941176471, 0.9647058823529412 ]
 bc_recall = [ 0.8888888888888888, 0.9222222222222223, 0.9444444444444444, 0.9333333333333333, 0.9111111111111111]
 
-plot_compare_models(bc_train_time, bc_test_time, bc_test_score, bc_f1, bc_precision, bc_recall, classifiers, "bc")
+#plot_compare_models(bc_train_time, bc_test_time, bc_test_score, bc_f1, bc_precision, bc_recall, classifiers, "bc")
  
 titanic_train_time = [0.0017900466918945312, 0.014275074005126953, 1.0585441589355469, 0.011755943298339844, 0.0007789134979248047  ]
 titanic_test_time = [ 0.06725382804870605, 0.06751894950866699 , 0.09732794761657715, 0.1081380844116211, 0.08622407913208008]
@@ -297,5 +297,5 @@ titanic_f1 = [ 0.9090909090909092 , 0.8135593220338982, 0.8048780487804879, 0.81
 titanic_precision = [0.9302325581395349, 0.6956521739130435, 0.75, 0.7258883248730964, 0.7010309278350515 ]
 titanic_recall = [0.8888888888888888, 0.9473684210526315, 0.868421052631579, 0.9407894736842105, 0.8947368421052632 ]
 
-plot_compare_models(titanic_train_time, titanic_test_time, titanic_test_score, titanic_f1, titanic_precision, titanic_recall, classifiers, "titanic")
+#plot_compare_models(titanic_train_time, titanic_test_time, titanic_test_score, titanic_f1, titanic_precision, titanic_recall, classifiers, "titanic")
  

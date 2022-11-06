@@ -1,0 +1,255 @@
+(7641) maimoons@Maimoons-MBP Project 3 % /Users/maimoons/miniconda3/envs/7641/bin/python "/Users/maimoons/Downloads/7641/Project 
+3/run_experiments.py"
+Time PCA:  0.014510869979858398
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+bic [[30556.49426246 29019.70242399 27764.11128802 27080.25738091
+  26696.44519163 26003.86067481 25645.10924181 25554.48043794
+  25294.47697396 25099.79966641 25155.004922   24814.21944367
+  24666.27372809 24917.55206373]
+ [ 9119.62953538  9307.3001508   8945.74272558  9682.52567084
+   8725.28450959  9049.55232437  8416.18402099  8105.94974149
+   7902.05725808  8235.48200315  7299.01997385  7612.90463866
+   7469.34599244  7980.89287787]
+ [ 3797.15352872  3344.55827626  3345.45139981  3393.42831145
+   3648.1010805   3738.15309565  3872.23352926  4062.77947947
+   4377.67165425  4488.22147822  4683.56163129  4409.09859307
+   4884.28183459  5229.77913513]
+ [ 5117.46327869  5058.20664427  5589.31039864  6871.29835642
+   6809.90237015  9487.50503884  9720.39474634 11711.21584036
+  12186.51879135 13403.07411598 15287.09343278 16675.4643522
+  19322.55688476 17098.98836867]]
+min 29 1 2.0 2.8
+Best GMM: diag Best k: 3
+
+Initialization 0
+  Iteration 10
+Initialization converged: True
+Initialization 1
+  Iteration 10
+Initialization converged: True
+Initialization 2
+  Iteration 10
+Initialization converged: True
+Initialization 3
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 4
+  Iteration 10
+Initialization converged: True
+f1: 0.7636363636363636 
+ accuracy: 0.755868544600939 precision: 0.9710982658959537 
+ recall: 0.6292134831460674
+Time to Train: 0.033782958984375 
+
+Score: -2.632218679856009 
+
+HMG: 0.3188536517998427 
+
+SIL: 0.11912626798232562 
+
+AIC: 2606.65031523732 
+
+BIC: 3344.5582762583454 
+
+Time ICA:  0.02295207977294922
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+bic [[30634.67264585 30267.73331823 29964.75670974 29991.57017431
+  29920.48954104 30040.03366673 29763.5407378  29749.20739303
+  29207.63294524 30008.59294562 29702.97050205 29118.14952837
+  29470.53630325 29656.12679639]
+ [35262.83425154 34781.69209255 35004.03876749 35173.56048657
+  35341.00273107 35178.88821614 34202.14846334 35062.7384011
+  33485.99531142 34490.21686833 34070.33961379 33397.97624224
+  33435.5601398  33628.10112188]
+ [30136.89202544 28710.69295719 28373.45893363 28157.68519033
+  28245.93807249 28135.39817085 28079.57458576 28082.21280886
+  27695.03318404 28450.66126589 28340.57949043 28001.11455356
+  28324.29396438 28629.95618502]
+ [33195.69792315 32049.85817297 34680.56910259 32187.60464374
+  33418.1322354  35934.18300487 34177.12270649 35591.96249728
+  37478.36030177 38131.57330638 39312.35896605 41921.97999234
+  43879.62762149 42266.38325236]]
+min 36 8 2.0 9.8
+Best GMM: diag Best k: 10
+
+Initialization 0
+  Iteration 10
+  Iteration 20
+  Iteration 30
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 2
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 3
+  Iteration 10
+  Iteration 20
+  Iteration 30
+  Iteration 40
+Initialization converged: True
+Initialization 4
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+f1: 0.885608856088561 
+ accuracy: 0.8544600938967136 precision: 0.8727272727272727 
+ recall: 0.898876404494382
+Time to Train: 0.10679984092712402 
+
+Score: -28.604631435367597 
+
+HMG: 0.44451817405963023 
+
+SIL: 0.0038930587136564794 
+
+AIC: 25469.145982933194 
+
+BIC: 27695.033184035077 
+
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/mixture/_base.py:286: ConvergenceWarning: Initialization 5 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+bic [[29695.83176915 27885.88256015 26258.27641669 25456.6014621
+  24703.56472793 24324.16240994 23840.05428423 23651.62275184
+  23350.90648514 23019.90676008 22901.70746478 22844.73147503
+  22796.22505007 22571.26430461]
+ [-3303.68363429 -3116.00669549 -2928.32917094 -2741.02126601
+  -4040.32866155 -4034.92660395 -3187.05927511 -4111.81083966
+  -4712.79835283 -4367.91383726 -5221.12453209 -5080.95558659
+  -4413.2161796  -4745.63982279]
+ [27753.23769153 26241.22545236 24938.24568248 24332.14452463
+  24096.47190974 23604.06722901 23532.72032998 23605.59283224
+  23380.57694093 23351.99628751 23256.15487377 23644.38080426
+  23432.00558087 23484.14693496]
+ [-7146.50447962 -7726.82979173 -6430.46479604 -5286.60483056
+  -3626.3011022  -3173.47297949 -1518.41698738  1071.39990059
+   1652.50740398  2199.79415868  3898.30881745  5652.22993557
+   6072.96875051  7824.03480901]]
+min 43 1 3.0 3.0
+Best GMM: full Best k: 3
+
+Initialization 0
+Initialization converged: True
+Initialization 1
+  Iteration 10
+Initialization converged: True
+Initialization 2
+  Iteration 10
+Initialization converged: True
+Initialization 3
+  Iteration 10
+Initialization converged: True
+Initialization 4
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+f1: 0.951310861423221 
+ accuracy: 0.9389671361502347 precision: 0.951310861423221 
+ recall: 0.951310861423221
+Time to Train: 0.06576704978942871 
+
+Score: 19.635893309428457 
+
+HMG: 0.6712238313015945 
+
+SIL: 0.3009469673307946 
+
+AIC: -13755.781099633045 
+
+BIC: -7726.82979173049 
+
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/mixture/_base.py:286: ConvergenceWarning: Initialization 5 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  warnings.warn(
+Time RF:  2.4082789421081543
+Selected Features:  24 ['mean radius' 'mean texture' 'mean perimeter' 'mean area'
+ 'mean smoothness' 'mean concavity' 'mean concave points' 'mean symmetry'
+ 'radius error' 'area error' 'smoothness error' 'concavity error'
+ 'symmetry error' 'fractal dimension error' 'worst radius' 'worst texture'
+ 'worst perimeter' 'worst area' 'worst smoothness' 'worst compactness'
+ 'worst concavity' 'worst concave points' 'worst symmetry'
+ 'worst fractal dimension']
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+bic [[24297.01481552 23171.93723724 22312.24777841 21709.55590884
+  21239.06095986 20765.21080817 20772.86132779 20612.78707557
+  20245.76133369 20012.31565745 19988.4845023  19884.56531528
+  20004.15447946 19446.37822369]
+ [ 8096.54022952  8247.87124986  8399.23378696  7612.43332957
+   7676.80396192  8348.7885222   7327.8419892   6951.65439704
+   6461.73394545  7013.59937019  6671.38090674  6503.5283914
+   6551.73829208  6438.35874536]
+ [22312.67319014 21079.09457717 19882.07681906 18854.15502574
+  18535.13214923 17955.59394979 17394.28762756 17804.83928094
+  17564.70384188 17089.83376311 16848.42654292 16930.35401687
+  16931.81132862 16880.61901991]
+ [ 4358.25709924  4313.71825038  5013.49963593  5732.84028888
+   5098.96518653  7335.36537301  7116.04509398  8090.93368933
+   9914.45059024  9949.95112793 10913.49124352 11064.62631157
+  11242.78544473 11708.75073942]]
+min 43 1 3.0 3.0
+Best GMM: full Best k: 3
+
+Initialization 0
+  Iteration 10
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 2
+  Iteration 10
+Initialization converged: True
+Initialization 3
+  Iteration 10
+Initialization converged: True
+Initialization 4
+  Iteration 10
+Initialization converged: True
+f1: 0.9225092250922509 
+ accuracy: 0.9014084507042254 precision: 0.9090909090909091 
+ recall: 0.9363295880149812
+Time to Train: 0.05834507942199707 
+
+Score: 1.8583399916463714 
+
+HMG: 0.5298990433315339 
+
+SIL: 0.32411435829939134 
+
+AIC: 364.69432711729155 
+
+BIC: 4313.718250383658 
+
+(7641) maimoons@Maimoons-MBP Project 3 % 

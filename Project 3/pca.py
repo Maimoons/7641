@@ -31,6 +31,7 @@ class PrincipalComponenetAnalysis():
         self.eigenvecs = pca.components_
         self.eigenvals = pca.explained_variance_
         if self.run_plot:
+            print("Best Components: ", len(pca.components_))
             print("Mean Reconstruction Error: ", self.mean_reconstruction_error(pca, self.x_pca))
             self.plot_variances(pca)
             self.plot_cum_variance(pca)

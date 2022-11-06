@@ -1,0 +1,323 @@
+(7641) maimoons@Maimoons-MBP Project 3 % /Users/maimoons/miniconda3/envs/7641/bin/python "/Users/maimoons/Downloads/7641/Project 
+3/run_experiments.py"
+Time PCA:  0.001964092254638672
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 6
+
+f1: 0.954627949183303 
+ accuracy: 0.9413145539906104 precision: 0.926056338028169 
+ recall: 0.9850187265917603
+Time to Train: 0.02751898765563965 
+
+WCSS: 6004.57285727222 
+
+Distortion: 3.4304347621796745 
+
+HMG: 0.6880160434561106 
+
+SIL: 0.17949187266548913 
+
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+Best GMM: diag Best k: 3
+
+Initialization 0
+  Iteration 10
+Initialization converged: True
+Initialization 1
+  Iteration 10
+Initialization converged: True
+Initialization 2
+  Iteration 10
+Initialization converged: True
+Initialization 3
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 4
+  Iteration 10
+Initialization converged: True
+f1: 0.7636363636363636 
+ accuracy: 0.755868544600939 precision: 0.9710982658959537 
+ recall: 0.6292134831460674
+Time to Train: 0.037345170974731445 
+
+Score: -2.632218679856009 
+
+HMG: 0.3188536517998427 
+
+SIL: 0.11912626798232562 
+
+Hidden units Mean Train Score [0.99178196 0.99413145 0.99530619 0.9958927  0.99824047 1.
+ 0.99941349 1.         1.        ] 
+
+Hidden units Mean Test Score [0.97649795 0.97649795 0.96946648 0.96949384 0.97179207 0.97649795
+ 0.97417237 0.97414501 0.97417237] 
+
+Learning Rate Mean Train Score [0.98415215 0.9929567  1.         1.         1.         1.
+ 1.         0.99941176 0.99060894 0.9870778 ] 
+
+Learning Rate Mean Test Score [0.97181943 0.97649795 0.97417237 0.97417237 0.97417237 0.97181943
+ 0.96708618 0.95069767 0.94131327 0.95310534] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [1.         1.         1.         1.         0.99882353 0.99117647
+ 0.99747899 0.99632353 0.99607843 0.99647059] 
+
+Ratio of Train Sizes Mean Test Score [0.9271409  0.95302326 0.95302326 0.9647606  0.96708618 0.9647606
+ 0.96943912 0.97176471 0.97647059 0.97885089] 
+
+Time to Train: 0.36431002616882324 
+
+Test Accuracy: 0.965034965034965 
+
+Final Train Accuracy: 0.9953051643192489 
+
+f1: 0.9723756906077348 
+ accuracy: 0.965034965034965 precision: 0.967032967032967 
+ recall: 0.9777777777777777
+Time ICA:  0.022588014602661133
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 10
+
+f1: 0.8566775244299674 
+ accuracy: 0.7934272300469484 precision: 0.7579250720461095 
+ recall: 0.9850187265917603
+Time to Train: 0.03563976287841797 
+
+WCSS: 9270.957693444549 
+
+Distortion: 4.313624022861563 
+
+HMG: 0.3887497242164169 
+
+SIL: -0.0061252558641654515 
+
+Best GMM: diag Best k: 10
+
+Initialization 0
+  Iteration 10
+  Iteration 20
+  Iteration 30
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 2
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 3
+  Iteration 10
+  Iteration 20
+  Iteration 30
+  Iteration 40
+Initialization converged: True
+Initialization 4
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+f1: 0.885608856088561 
+ accuracy: 0.8544600938967136 precision: 0.8727272727272727 
+ recall: 0.898876404494382
+Time to Train: 0.12128019332885742 
+
+Score: -28.604631435367597 
+
+HMG: 0.44451817405963023 
+
+SIL: 0.0038930587136564794 
+
+Hidden units Mean Train Score [0.99471623 0.99941349 1.         1.         1.         1.
+ 1.         1.         1.        ] 
+
+Hidden units Mean Test Score [0.96008208 0.9529959  0.9647606  0.9647606  0.96240766 0.9647606
+ 0.96478796 0.96711354 0.96005472] 
+
+Learning Rate Mean Train Score [0.9929567  0.99882698 1.         1.         1.         1.
+ 0.99941349 0.99530447 0.97241504 0.96537692] 
+
+Learning Rate Mean Test Score [0.9647606  0.97179207 0.9647606  0.96005472 0.96008208 0.9671409
+ 0.94834473 0.92954856 0.93428181 0.93898769] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [1.         1.         1.         1.         0.99764706 0.99117647
+ 0.99915966 0.99852941 1.         0.99941176] 
+
+Ratio of Train Sizes Mean Test Score [0.79595075 0.89668947 0.92960328 0.94599179 0.95302326 0.95772914
+ 0.96473324 0.96473324 0.96711354 0.97181943] 
+
+Time to Train: 0.677401065826416 
+
+Test Accuracy: 0.9440559440559441 
+
+Final Train Accuracy: 1.0 
+
+f1: 0.9565217391304347 
+ accuracy: 0.9440559440559441 precision: 0.9361702127659575 
+ recall: 0.9777777777777777
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 6
+
+f1: 0.9363957597173144 
+ accuracy: 0.9154929577464789 precision: 0.8862876254180602 
+ recall: 0.9925093632958801
+Time to Train: 0.030472755432128906 
+
+WCSS: 5249.395611037546 
+
+Distortion: 3.234729788792857 
+
+HMG: 0.5947542265328442 
+
+SIL: 0.20266885630090437 
+
+Best GMM: full Best k: 3
+
+Initialization 0
+Initialization converged: True
+Initialization 1
+  Iteration 10
+Initialization converged: True
+Initialization 2
+  Iteration 10
+Initialization converged: True
+Initialization 3
+  Iteration 10
+Initialization converged: True
+Initialization 4
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+f1: 0.951310861423221 
+ accuracy: 0.9389671361502347 precision: 0.951310861423221 
+ recall: 0.951310861423221
+Time to Train: 0.09044528007507324 
+
+Score: 19.635893309428457 
+
+HMG: 0.6712238313015945 
+
+SIL: 0.3009469673307946 
+
+Hidden units Mean Train Score [0.9859134  0.98767638 0.99237019 0.99237019 0.99647921 0.99471796
+ 0.99647921 0.99647921 0.99647921] 
+
+Hidden units Mean Test Score [0.96708618 0.96005472 0.96711354 0.96005472 0.96240766 0.96711354
+ 0.97414501 0.9647606  0.9647606 ] 
+
+Learning Rate Mean Train Score [0.98121615 0.99002243 0.99941349 1.         1.         1.
+ 1.         0.997064   0.99354839 0.97828532] 
+
+Learning Rate Mean Test Score [0.96243502 0.96708618 0.96946648 0.96005472 0.9647606  0.96005472
+ 0.96240766 0.9647606  0.95069767 0.96716826] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [1.         1.         1.         1.         0.99882353 0.9872549
+ 1.         1.         1.         1.        ] 
+
+Ratio of Train Sizes Mean Test Score [0.92492476 0.94837209 0.9647606  0.9623803  0.96708618 0.96711354
+ 0.9647606  0.97184679 0.97414501 0.97652531] 
+
+Time to Train: 0.11473488807678223 
+
+Test Accuracy: 0.951048951048951 
+
+Final Train Accuracy: 1.0 
+
+f1: 0.9608938547486034 
+ accuracy: 0.951048951048951 precision: 0.9662921348314607 
+ recall: 0.9555555555555556
+Time RF:  2.4579997062683105
+Selected Features:  24 ['mean radius' 'mean texture' 'mean perimeter' 'mean area'
+ 'mean smoothness' 'mean concavity' 'mean concave points' 'mean symmetry'
+ 'radius error' 'area error' 'smoothness error' 'concavity error'
+ 'symmetry error' 'fractal dimension error' 'worst radius' 'worst texture'
+ 'worst perimeter' 'worst area' 'worst smoothness' 'worst compactness'
+ 'worst concavity' 'worst concave points' 'worst symmetry'
+ 'worst fractal dimension']
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 6
+
+f1: 0.9618874773139746 
+ accuracy: 0.9507042253521126 precision: 0.9330985915492958 
+ recall: 0.9925093632958801
+Time to Train: 0.036045074462890625 
+
+WCSS: 4617.807029244761 
+
+Distortion: 3.022282396264803 
+
+HMG: 0.7511686543128645 
+
+SIL: 0.1773307512512986 
+
+Best GMM: full Best k: 3
+
+Initialization 0
+  Iteration 10
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 2
+  Iteration 10
+Initialization converged: True
+Initialization 3
+  Iteration 10
+Initialization converged: True
+Initialization 4
+  Iteration 10
+Initialization converged: True
+f1: 0.9225092250922509 
+ accuracy: 0.9014084507042254 precision: 0.9090909090909091 
+ recall: 0.9363295880149812
+Time to Train: 0.08399105072021484 
+
+Score: 1.8583399916463714 
+
+HMG: 0.5298990433315339 
+
+SIL: 0.32411435829939134 
+
+Hidden units Mean Train Score [0.9859134  0.98708815 0.99237192 0.99119545 0.99413145 0.9929567
+ 0.99647921 0.99706572 0.99706745] 
+
+Hidden units Mean Test Score [0.97885089 0.97885089 0.97882353 0.97649795 0.97649795 0.98120383
+ 0.97414501 0.97649795 0.97417237] 
+
+Learning Rate Mean Train Score [0.98532689 0.98649991 0.99765223 1.         1.         1.
+ 1.         0.99765051 0.99530102 0.98415387] 
+
+Learning Rate Mean Test Score [0.97890561 0.98355677 0.97885089 0.97652531 0.97417237 0.97885089
+ 0.97181943 0.97176471 0.9647606  0.96943912] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [1.         0.99117647 0.99215686 0.98823529 0.98823529 0.98235294
+ 0.98319328 0.98308824 0.98431373 0.98470588] 
+
+Ratio of Train Sizes Mean Test Score [0.9577565  0.97414501 0.96946648 0.97652531 0.98120383 0.97652531
+ 0.97885089 0.97887825 0.98120383 0.98120383] 
+
+Time to Train: 0.3572349548339844 
+
+Test Accuracy: 0.958041958041958 
+
+Final Train Accuracy: 0.9859154929577465 
+
+f1: 0.9666666666666667 
+ accuracy: 0.958041958041958 precision: 0.9666666666666667 
+ recall: 0.9666666666666667
+(7641) maimoons@Maimoons-MBP Project 3 % 

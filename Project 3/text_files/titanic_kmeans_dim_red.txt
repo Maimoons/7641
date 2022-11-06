@@ -1,0 +1,90 @@
+
+Time PCA:  0.0025048255920410156
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 8
+
+f1: 0.7259036144578314 
+ accuracy: 0.7957351290684624 precision: 0.7484472049689441 
+ recall: 0.7046783625730995
+Time to Train: 0.030057907104492188 
+
+WCSS: 2387.8456389884273 
+
+Distortion: 1.4536358526220123 
+
+HMG: 0.2955972991380535 
+
+SIL: 0.26119513832634567 
+
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 6
+
+f1: 0.7267267267267269 
+ accuracy: 0.7957351290684624 precision: 0.7469135802469136 
+ recall: 0.7076023391812866
+Time to Train: 0.03952789306640625 
+
+WCSS: 3262.073076349175 
+
+Distortion: 1.730450108471777 
+
+HMG: 0.26730203957065585 
+
+SIL: 0.2483420960176198 
+
+
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 5
+
+f1: 0.6481178396072014 
+ accuracy: 0.7586980920314254 precision: 0.7360594795539034 
+ recall: 0.5789473684210527
+Time to Train: 0.03837919235229492 
+
+WCSS: 1799.667256954667 
+
+Distortion: 1.2097308514104386 
+
+HMG: 0.181341091341289 
+
+SIL: 0.34202242469515187 
+
+Time RF:  0.6228408813476562
+Selected Features:  7 ['PassengerId' 'Pclass' 'Sex' 'Age' 'SibSp' 'Parch' 'Fare']
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 7
+
+f1: 0.734375 
+ accuracy: 0.8092031425364759 precision: 0.7885906040268457 
+ recall: 0.6871345029239766
+Time to Train: 0.042822837829589844 
+
+WCSS: 2689.517965780913 
+
+Distortion: 1.5218771331910759 
+
+HMG: 0.31225574158660535 
+
+SIL: 0.2450891339945855 
+
+(7641) maimoons@Maimoons-MacBook-Pro Project 3 % 

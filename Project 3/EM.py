@@ -62,7 +62,7 @@ class EM():
         
         print(("Best GMM: {0} Best k: {1}\n").format(best_gmm.covariance_type, best_k))
         best = self.best_cluster(best_k, best_gmm.covariance_type, best_cv_idx)
-        return best.labels_, best.predict(self.x_test)
+        return best.predict(self.x), best.predict(self.x_test)
 
      
     def get_accuracies(self, em):
@@ -131,6 +131,8 @@ class EM():
             print(("Score: {0} \n").format(self.score[cv_idx][-1]))
             print(("HMG: {0} \n").format(self.hmg[cv_idx][-1]))
             print(("SIL: {0} \n").format(self.sil[cv_idx][-1]))
+            print(("AIC: {0} \n").format(self.aic[cv_idx][-1]))
+            print(("BIC: {0} \n").format(self.bic[cv_idx][-1]))
             
         return em, y_labels
     
@@ -342,37 +344,6 @@ class EM():
         
         plt.legend(handles, labels)
 
-        # Plot the winner
-        '''splot = plt.subplot(2, 1, 2)
-        Y_ = clf.predict(self.x)
-        for i, color in enumerate(color_iter):
-            if not np.any(Y_ == i):
-                continue
-            data = self.transformed_x[Y_ == i]
-            cov = np.cov(data.iloc[:, 0], data.iloc[:, 1])
-            mean = (np.mean(data.iloc[:, 0]), np.mean(data.iloc[:, 1]))
-            
-            cov = np.nan_to_num(cov)
-            v, w = linalg.eigh(cov)
-            
-            plt.scatter(data.iloc[:, 0], data.iloc[:, 1], 0.8, color=color)
-
-            # Plot an ellipse to show the Gaussian component
-            angle = np.arctan2(w[0][1], w[0][0])
-            angle = 180.0 * angle / np.pi  # convert to degrees
-            v = 2.0 * np.sqrt(2.0) * np.sqrt(v)
-            ell = matplotlib.patches.Ellipse(mean, v[0], v[1], 180.0 + angle, color=color)
-            ell.set_clip_box(splot.bbox)
-            ell.set_alpha(0.5)
-            splot.add_artist(ell)
-
-        plt.xticks(())
-        plt.yticks(())
-        plt.title(
-            f"Selected GMM: {best_gmm.covariance_type} model, "
-            f"{best_gmm.n_components} components"
-        )
-        plt.subplots_adjust(hspace=0.35, bottom=0.02)'''
         plt.savefig("./images/"+self.dataset+"/EM/"+self.folder+"all_bic")
         plt.clf()
         

@@ -1,0 +1,206 @@
+Kmeans
+
+BC
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 7
+
+f1: 0.9227722772277228 
+ accuracy: 0.9084507042253521 precision: 0.9789915966386554 
+ recall: 0.8726591760299626
+Time to Train: 0.029999971389770508 
+
+WCSS: 5664.307347720415 
+
+Distortion: 3.3504661020007287 
+
+HMG: 0.7192734628983963 
+
+SIL: 0.1480628037076431 
+
+Titanic
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 7
+
+f1: 0.734375 
+ accuracy: 0.8092031425364759 precision: 0.7885906040268457 
+ recall: 0.6871345029239766
+Time to Train: 0.032595157623291016 
+
+WCSS: 2689.517965780913 
+
+Distortion: 1.5218771331910759 
+
+HMG: 0.31225574158660535 
+
+SIL: 0.2450891339945855 
+
+
+(7641) maimoons@Maimoons-MBP Project 3 % 
+
+
+
+EM
+BC
+bic [[30556.49426246 29019.70242399 27764.11128802 27080.25738091
+  26696.44519163 26003.86067481 25645.10924181 25554.48043794
+  25294.47697396 25099.79966641 25155.004922   24814.2194439
+  24666.27372836 24917.55206373]
+ [ 9119.62953538  9307.3001508   8945.74272558  9682.52567084
+   8725.28450959  9049.55232437  8416.18402099  8105.94974149
+   7902.05725808  8235.48200315  7299.01997385  7612.90463866
+   7469.34599244  7980.89287787]
+ [28397.16133295 26774.5313558  25386.02675749 24196.51324287
+  23579.19570075 23067.40078524 22767.75627889 22674.56979121
+  22483.71742982 22315.99394647 21919.87388827 21966.08564282
+  22271.32334012 21786.23274742]
+ [ 5117.46327869  5058.20664425  5589.31039864  6871.29835642
+   6809.90237012  9487.50503885  9720.39474635 11711.21584037
+  12186.51879133 13403.074116   15287.09343279 16675.4643522
+  19322.55688477 17098.98836865]]
+min 43 1 3.0 3.0
+Best GMM: full Best k: 3
+
+Initialization 0
+  Iteration 10
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 2
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 3
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 4
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+f1: 0.9467680608365018 
+ accuracy: 0.9342723004694836 precision: 0.9613899613899614 
+ recall: 0.9325842696629213
+Time to Train: 0.10268020629882812 
+
+Score: 4.6299819995955875 
+
+HMG: 0.6803812050237493 
+
+SIL: 0.2901814275824707 
+
+AIC: -970.7446636554405 
+
+BIC: 5058.206644247114 
+
+Titanic
+bic [[ 16207.80236086  15534.65937686  14602.22626355  14477.32388333
+   14045.98033168  13884.03320984  13725.50227776  13363.97387136
+   13312.26608943  13256.00028979  12916.74423894  12741.62429732
+   12714.13346688  12537.85914301]
+ [ 17157.67233627  17212.00958218  17266.34751789  17320.68359036
+   17373.34714666  17429.31710084  17483.66151982  16832.544188
+   17592.06336704  16300.46598574  15841.98928945  15896.2301991
+   15950.5696855   16004.88463347]
+ [  5577.16902642  -1982.49339293  -3322.72317028  -7843.47047244
+  -10621.6051759  -10635.48745787 -12279.98629554 -15659.92881821
+  -14481.19895073 -15543.99114126 -17078.7426343  -19765.05598895
+  -18943.00313235 -19316.19917518]
+ [  2971.51847803  -2126.22644016  -4251.21554243  -5945.02078303
+  -10081.62626779 -12430.07817945 -14930.3135693  -11617.44113354
+  -10591.84824785 -13470.36928674 -11544.86817873 -16466.9460173
+  -12308.27542178 -16741.40187623]]
+min 39 11 2.0 12.8
+Best GMM: diag Best k: 13
+
+Initialization 0
+  Iteration 10
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 2
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 3
+  Iteration 10
+Initialization converged: True
+Initialization 4
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+f1: 0.6923076923076924 
+ accuracy: 0.8024691358024691 precision: 0.8608695652173913 
+ recall: 0.5789473684210527
+Time to Train: 0.08533287048339844 
+
+Score: 11.830960049313694 
+
+HMG: 0.33436583032295697 
+
+SIL: 0.09926366500529733 
+
+AIC: -20694.770807877 
+
+BIC: -19765.055988947664 
+
+(7641) maimoons@Maimoons-MBP Project 3 % 
+
+
+
+
+\
+    
+PCA
+Time PCA:  0.013770818710327148
+Best Components:  30
+Mean Reconstruction Error:  1.4899931187648545e-13
+
+Time PCA:  0.006839752197265625
+Best Components:  7
+Mean Reconstruction Error:  5.64853783115494e-14
+
+ICA:
+BC
+Best Components:  27
+Time ICA:  0.023421764373779297
+Mean Reconstruction Error:  0.9875220049306577
+
+Titanic
+Best Components:  7
+Time ICA:  0.005234718322753906
+Mean Reconstruction Error:  4.588587269423117e-14
+
+
+
+Random
+BC
+Best Components:  30
+Time ICA:  0.0024340152740478516
+Mean Reconstruction Error:  3.910662718044578e-13
+
+Titanic
+Best Components:  5
+Time ICA:  0.0021598339080810547
+Mean Reconstruction Error:  43.98119443467515
+
+
+RF
+BC
+Time RF:  2.4524471759796143
+Selected Features:  24 ['mean radius' 'mean texture' 'mean perimeter' 'mean area'
+ 'mean smoothness' 'mean concavity' 'mean concave points' 'mean symmetry'
+ 'radius error' 'area error' 'smoothness error' 'concavity error'
+ 'symmetry error' 'fractal dimension error' 'worst radius' 'worst texture'
+ 'worst perimeter' 'worst area' 'worst smoothness' 'worst compactness'
+ 'worst concavity' 'worst concave points' 'worst symmetry'
+ 'worst fractal dimension']
+
+ Titanic
+
+Time RF:  0.659480094909668
+Selected Features:  7 ['PassengerId' 'Pclass' 'Sex' 'Age' 'SibSp' 'Parch' 'Fare']
+
+
+

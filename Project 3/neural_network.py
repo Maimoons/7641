@@ -57,7 +57,7 @@ class NeuralNetwork():
         
     def test_ANN(self, model_name):
         start_time = time.time()
-        test(model_name, self.x_train, self.y_train, self.x_test, self.y_test, self.classes[self.dataset_idx], self.dataset[self.dataset_idx], "nn", verbose = True)
+        test(model_name, self.x_train, self.y_train, self.x_test, self.y_test, self.classes[self.dataset_idx], self.dataset[self.dataset_idx], self.folder+"nn", verbose = True)
         end_time = time.time()
         time_to_test = end_time - start_time
         debug(("Time to Test: {0} \n").format(time_to_test))

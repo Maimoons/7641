@@ -87,5 +87,5 @@ if __name__ == "__main__":
     debug(("XTrain: {0} \n").format(x_train.describe()))
     debug(("YTrain: {0} \n").format(y_train.info()))
     debug(("YTrain Info: {0} \n").format(y_train.value_counts()))
-    #train_ANN(model_names[dataset_idx])
+    train_ANN(model_names[dataset_idx])
     test_ANN(model_names[dataset_idx])

@@ -1,0 +1,139 @@
+PCA
+Time PCA:  0.01414799690246582
+Hidden units Mean Train Score [0.99119717 0.99530447 0.997064   0.99765396 0.99882698 0.99941349
+ 0.99882698 1.         1.        ] 
+
+Hidden units Mean Test Score [0.97887825 0.97181943 0.97649795 0.97652531 0.97417237 0.96949384
+ 0.97885089 0.97652531 0.97649795] 
+
+Learning Rate Mean Train Score [0.98649991 0.99471796 1.         1.         1.         1.
+ 0.99941349 0.99765223 0.99765396 0.99824047] 
+
+Learning Rate Mean Test Score [0.97649795 0.97882353 0.97417237 0.97181943 0.97179207 0.96716826
+ 0.96943912 0.97176471 0.96943912 0.96478796] 
+
+ Ratio of Train Sizes Mean Train Score [0.98823529 0.99117647 0.98823529 0.98529412 0.98235294 0.9754902
+ 0.98319328 0.98455882 0.98366013 0.98352941] 
+
+Ratio of Train Sizes Mean Test Score [0.93904241 0.96716826 0.96248974 0.96719562 0.96722298 0.96257182
+ 0.97184679 0.97417237 0.97652531 0.97419973] 
+
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/neural_network/_multilayer_perceptron.py:702: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (500) reached and the optimization hasn't converged yet.
+  warnings.warn(
+Time to Train: 0.70107102394104 
+
+Test Accuracy: 0.965034965034965 
+
+Final Train Accuracy: 0.9835680751173709 
+
+f1: 0.9726775956284154 
+ accuracy: 0.965034965034965 precision: 0.956989247311828 
+ recall: 0.9888888888888889
+ 
+ 
+ ICA
+ (7641) maimoons@Maimoons-MBP Project 3 % /Users/maimoons/miniconda3/envs/7641/bin/python "/Users/maimoons/Downloads/7641/Project 
+3/run_experiments.py"
+Hidden units Mean Train Score [0.99765223 0.99882698 1.         1.         1.         1.
+ 1.         1.         1.        ] 
+
+Hidden units Mean Test Score [0.96008208 0.95543092 0.97176471 0.96005472 0.95772914 0.96246238
+ 0.95772914 0.96005472 0.96010944] 
+
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/neural_network/_multilayer_perceptron.py:702: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (1000) reached and the optimization hasn't converged yet.
+  warnings.warn(
+Learning Rate Mean Train Score [0.99178196 1.         1.         1.         1.         1.
+ 1.         0.99882525 0.997064   0.9958927 ] 
+
+Learning Rate Mean Test Score [0.9647606  0.96711354 0.96711354 0.96005472 0.95772914 0.96010944
+ 0.94593707 0.95543092 0.95067031 0.94358413] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+
+Ratio of Train Sizes Mean Train Score [1.         1.         1.         0.99558824 0.99647059 0.98333333
+ 0.99327731 0.99044118 0.99150327 0.99176471] 
+
+Ratio of Train Sizes Mean Test Score [0.87094391 0.92492476 0.93663475 0.9647606  0.97181943 0.96243502
+ 0.9647606  0.96949384 0.9671409  0.97419973] 
+
+Time to Train: 0.6617217063903809 
+
+Test Accuracy: 0.9440559440559441 
+
+Final Train Accuracy: 0.9906103286384976 
+
+f1: 0.956043956043956 
+ accuracy: 0.9440559440559441 precision: 0.9456521739130435 
+ recall: 0.9666666666666667
+ 
+ GRP
+ (7641) maimoons@Maimoons-MBP Project 3 % /Users/maimoons/miniconda3/envs/7641/bin/python "/Users/maimoons/Downloads/7641/Project 
+3/run_experiments.py"
+Hidden units Mean Train Score [0.98474211 0.98767466 0.98943592 0.99295843 0.99119717 0.99589098
+ 0.99647921 0.99765223 0.99647921] 
+
+Hidden units Mean Test Score [0.9623803  0.96473324 0.9647606  0.96711354 0.96711354 0.96946648
+ 0.97649795 0.96946648 0.96946648] 
+
+Learning Rate Mean Train Score [0.98121787 0.98943419 0.99823874 1.         1.         1.
+ 1.         0.99941349 0.99294463 0.98179748] 
+
+Learning Rate Mean Test Score [0.96478796 0.9647606  0.97417237 0.96711354 0.96711354 0.96008208
+ 0.9647606  0.9529959  0.95305062 0.96946648] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [1.         1.         0.99803922 0.99411765 0.99176471 0.98431373
+ 0.99579832 0.99191176 0.99281046 0.99352941] 
+
+Ratio of Train Sizes Mean Test Score [0.94596443 0.9553762  0.9671409  0.97885089 0.97649795 0.97652531
+ 0.97414501 0.97885089 0.97649795 0.98120383] 
+
+Time to Train: 0.5888528823852539 
+
+Test Accuracy: 0.965034965034965 
+
+Final Train Accuracy: 0.9929577464788732 
+
+f1: 0.9720670391061451 
+ accuracy: 0.965034965034965 precision: 0.9775280898876404 
+ recall: 0.9666666666666667
+ 
+RF
+Time RF:  2.5487329959869385
+
+Selected Features:  24 ['mean radius' 'mean texture' 'mean perimeter' 'mean area'
+ 'mean smoothness' 'mean concavity' 'mean concave points' 'mean symmetry'
+ 'radius error' 'area error' 'smoothness error' 'concavity error'
+ 'symmetry error' 'fractal dimension error' 'worst radius' 'worst texture'
+ 'worst perimeter' 'worst area' 'worst smoothness' 'worst compactness'
+ 'worst concavity' 'worst concave points' 'worst symmetry'
+ 'worst fractal dimension']
+Hidden units Mean Train Score [0.99060894 0.98767466 0.99178368 0.99354321 0.99471796 0.99413145
+ 0.99530447 0.99589098 0.99647921] 
+
+Hidden units Mean Test Score [0.97649795 0.97414501 0.98123119 0.98120383 0.97885089 0.97885089
+ 0.97885089 0.97652531 0.97652531] 
+
+Learning Rate Mean Train Score [0.98532689 0.99060894 0.99823874 1.         1.         1.
+ 1.         0.99471278 0.98826462 0.99178196] 
+
+Learning Rate Mean Test Score [0.98125855 0.98120383 0.97885089 0.97652531 0.97181943 0.96481532
+ 0.96716826 0.97411765 0.96943912 0.96708618] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [1.         0.99117647 0.99215686 0.99117647 0.98941176 0.98431373
+ 0.98655462 0.98602941 0.98562092 0.98705882] 
+
+Ratio of Train Sizes Mean Test Score [0.95543092 0.97652531 0.97652531 0.98123119 0.97887825 0.97890561
+ 0.97655267 0.98123119 0.98123119 0.98358413] 
+
+Time to Train: 0.3736550807952881 
+
+Test Accuracy: 0.972027972027972 
+
+Final Train Accuracy: 0.9882629107981221 
+
+f1: 0.9777777777777777 
+ accuracy: 0.972027972027972 precision: 0.9777777777777777 
+ recall: 0.9777777777777777
+(7641) maimoons@Maimoons-MBP Project 3 % 

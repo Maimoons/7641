@@ -1,0 +1,332 @@
+(7641) maimoons@Maimoons-MBP Project 3 % /Users/maimoons/miniconda3/envs/7641/bin/python "/Users/maimoons/Downloads/7641/Project 
+3/run_experiments.py"
+Time PCA:  0.011246919631958008
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 7
+
+f1: 0.734375 
+ accuracy: 0.8092031425364759 precision: 0.7885906040268457 
+ recall: 0.6871345029239766
+Time to Train: 0.03166532516479492 
+
+WCSS: 2689.5179657809113 
+
+Distortion: 1.5218771331910754 
+
+HMG: 0.31225574158660535 
+
+SIL: 0.24508913399458557 
+
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:795: FutureWarning: The default initialization in TSNE will change from 'random' to 'pca' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/manifold/_t_sne.py:805: FutureWarning: The default learning rate in TSNE will change from 200.0 to 'auto' in 1.2.
+  warnings.warn(
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 due to no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+/Users/maimoons/miniconda3/envs/7641/lib/python3.10/site-packages/sklearn/metrics/_classification.py:1327: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 due to no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, msg_start, len(result))
+Best GMM: full Best k: 15
+
+Initialization 0
+  Iteration 10
+  Iteration 20
+  Iteration 30
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+  Iteration 30
+Initialization converged: True
+Initialization 2
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 3
+  Iteration 10
+  Iteration 20
+  Iteration 30
+Initialization converged: True
+Initialization 4
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+f1: 0.7067901234567903 
+ accuracy: 0.7867564534231201 precision: 0.7483660130718954 
+ recall: 0.6695906432748538
+Time to Train: 0.39194202423095703 
+
+Score: 11.449200629978147 
+
+HMG: 0.3300723182738356 
+
+SIL: 0.09140915642999209 
+
+Hidden units Mean Train Score [0.83389303 0.8484848  0.84680138 0.8512934  0.85045267 0.85830129
+ 0.87457688 0.87149251 0.86672392] 
+
+Hidden units Mean Test Score [0.79462055 0.81032578 0.79916515 0.79579436 0.78794803 0.79352834
+ 0.79018894 0.78238654 0.78798569] 
+
+Learning Rate Mean Train Score [0.81509605 0.84539925 0.87261807 0.88580338 0.88777558 0.87962754
+ 0.83922617 0.68354358 0.62429795 0.62121161] 
+
+Learning Rate Mean Test Score [0.79573787 0.80812881 0.78910301 0.77342289 0.76557027 0.78231122
+ 0.7800703  0.66206139 0.60161321 0.61166907] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [0.88169014 0.84788732 0.81971831 0.82253521 0.81516854 0.81639344
+ 0.82369478 0.82495606 0.8271875  0.83146067] 
+
+Ratio of Train Sizes Mean Test Score [0.76996422 0.77553198 0.79238591 0.79124349 0.79462055 0.79914004
+ 0.80585651 0.80472663 0.8069801  0.8170548 ] 
+
+Time to Train: 0.8562860488891602 
+
+Test Accuracy: 0.8157894736842105 
+
+Final Train Accuracy: 0.8383838383838383 
+
+f1: 0.7220216606498195 
+ accuracy: 0.8157894736842105 precision: 0.8 
+ recall: 0.6578947368421053
+Time ICA:  0.004533052444458008
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 6
+
+f1: 0.7267267267267269 
+ accuracy: 0.7957351290684624 precision: 0.7469135802469136 
+ recall: 0.7076023391812866
+Time to Train: 0.03933286666870117 
+
+WCSS: 3262.073076349175 
+
+Distortion: 1.730450108471777 
+
+HMG: 0.26730203957065585 
+
+SIL: 0.2483420960176198 
+
+Best GMM: full Best k: 15
+
+Initialization 0
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 2
+  Iteration 10
+Initialization converged: True
+Initialization 3
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 4
+  Iteration 10
+Initialization converged: True
+f1: 0.7220543806646524 
+ accuracy: 0.7934904601571269 precision: 0.746875 
+ recall: 0.6988304093567251
+Time to Train: 0.351165771484375 
+
+Score: 10.712976793192551 
+
+HMG: 0.3500641649085938 
+
+SIL: 0.1367123518569962 
+
+Hidden units Mean Train Score [0.83585775 0.84231015 0.85634091 0.85213176 0.8563413  0.85577675
+ 0.86616055 0.87233126 0.85942489] 
+
+Hidden units Mean Test Score [0.80248572 0.81033206 0.80132446 0.80468897 0.80249827 0.80244806
+ 0.78121901 0.79127487 0.7991526 ] 
+
+Learning Rate Mean Train Score [0.8313673  0.85213097 0.87261768 0.88607994 0.88552051 0.87654632
+ 0.83473454 0.66301196 0.62373655 0.5361548 ] 
+
+Learning Rate Mean Test Score [0.81143682 0.81035089 0.79130626 0.78682443 0.79799761 0.76328542
+ 0.79241102 0.6599774  0.61394765 0.53324336] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [0.89859155 0.85915493 0.82065728 0.82676056 0.82865169 0.82763466
+ 0.83373494 0.83620387 0.8340625  0.83455056] 
+
+Ratio of Train Sizes Mean Test Score [0.76769192 0.77440839 0.78452075 0.80692989 0.80918335 0.81141799
+ 0.82152407 0.81929571 0.81702969 0.82489486] 
+
+Time to Train: 0.8787479400634766 
+
+Test Accuracy: 0.8588516746411483 
+
+Final Train Accuracy: 0.8338945005611672 
+
+f1: 0.8078175895765473 
+ accuracy: 0.8588516746411483 precision: 0.8 
+ recall: 0.8157894736842105
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 5
+
+f1: 0.6481178396072014 
+ accuracy: 0.7586980920314254 precision: 0.7360594795539034 
+ recall: 0.5789473684210527
+Time to Train: 0.0341949462890625 
+
+WCSS: 1799.6672569546668 
+
+Distortion: 1.2097308514104386 
+
+HMG: 0.181341091341289 
+
+SIL: 0.34202242469515187 
+
+Best GMM: full Best k: 15
+
+Initialization 0
+  Iteration 10
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+  Iteration 30
+Initialization converged: True
+Initialization 2
+  Iteration 10
+  Iteration 20
+  Iteration 30
+Initialization converged: True
+Initialization 3
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 4
+  Iteration 10
+  Iteration 20
+  Iteration 30
+Initialization converged: True
+f1: 0.7291361639824304 
+ accuracy: 0.792368125701459 precision: 0.7302052785923754 
+ recall: 0.7280701754385965
+Time to Train: 0.44530200958251953 
+
+Score: 2.411946265419303 
+
+HMG: 0.2914522194175769 
+
+SIL: 0.018796650815006005 
+
+Hidden units Mean Train Score [0.79349402 0.79377531 0.81089045 0.8207093  0.83501466 0.84091077
+ 0.82716328 0.83305349 0.83782483] 
+
+Hidden units Mean Test Score [0.75874082 0.76211161 0.77668696 0.77224907 0.76548239 0.76435252
+ 0.78232377 0.77669952 0.78008286] 
+
+Learning Rate Mean Train Score [0.77497439 0.81790504 0.84848756 0.84848598 0.84119404 0.83024804
+ 0.77553855 0.68549451 0.62261492 0.53783546] 
+
+Learning Rate Mean Test Score [0.76211161 0.76998305 0.78571339 0.77447116 0.76776097 0.77110037
+ 0.72842885 0.64537066 0.62178143 0.53102756] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [0.96901408 0.91830986 0.8028169  0.85070423 0.86235955 0.82435597
+ 0.85060241 0.85272408 0.8325     0.84803371] 
+
+Ratio of Train Sizes Mean Test Score [0.74075701 0.70480824 0.76210533 0.74072563 0.77219886 0.76211161
+ 0.76327286 0.76326031 0.77674973 0.7823426 ] 
+
+Time to Train: 0.7603981494903564 
+
+Test Accuracy: 0.8086124401913876 
+
+Final Train Accuracy: 0.8496071829405163 
+
+f1: 0.6825396825396826 
+ accuracy: 0.8086124401913876 precision: 0.86 
+ recall: 0.5657894736842105
+Time RF:  0.618131160736084
+Selected Features:  7 ['PassengerId' 'Pclass' 'Sex' 'Age' 'SibSp' 'Parch' 'Fare']
+Best KM: <class 'sklearn.cluster._kmeans.KMeans'> Best k: 7
+
+f1: 0.734375 
+ accuracy: 0.8092031425364759 precision: 0.7885906040268457 
+ recall: 0.6871345029239766
+Time to Train: 0.03396916389465332 
+
+WCSS: 2689.517965780913 
+
+Distortion: 1.5218771331910759 
+
+HMG: 0.31225574158660535 
+
+SIL: 0.2450891339945855 
+
+Best GMM: diag Best k: 13
+
+Initialization 0
+  Iteration 10
+Initialization converged: True
+Initialization 1
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 2
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+Initialization 3
+  Iteration 10
+Initialization converged: True
+Initialization 4
+  Iteration 10
+  Iteration 20
+Initialization converged: True
+f1: 0.6923076923076924 
+ accuracy: 0.8024691358024691 precision: 0.8608695652173913 
+ recall: 0.5789473684210527
+Time to Train: 0.14226102828979492 
+
+Score: 11.830960049313694 
+
+HMG: 0.33436583032295697 
+
+SIL: 0.09926366500529733 
+
+Hidden units Mean Train Score [0.83894488 0.84118852 0.85213255 0.85185047 0.85101131 0.86447673
+ 0.87626227 0.8734584  0.86812448] 
+
+Hidden units Mean Test Score [0.80584395 0.82041303 0.79917143 0.79243613 0.80365325 0.79803528
+ 0.79580692 0.78910301 0.80364698] 
+
+Learning Rate Mean Train Score [0.82603653 0.84876491 0.8773835  0.89169122 0.89646335 0.87906496
+ 0.84315284 0.74328364 0.62598374 0.50531896] 
+
+Learning Rate Mean Test Score [0.81706735 0.80249827 0.78235516 0.79357228 0.76779235 0.79237964
+ 0.78570711 0.70928379 0.61504614 0.50509698] 
+
+Fitting 5 folds for each of 360 candidates, totalling 1800 fits
+Ratio of Train Sizes Mean Train Score [0.90985915 0.87042254 0.82723005 0.84507042 0.84325843 0.83653396
+ 0.84457831 0.84428822 0.8384375  0.83820225] 
+
+Ratio of Train Sizes Mean Test Score [0.77113176 0.79573159 0.79683008 0.82601218 0.82378382 0.81261063
+ 0.83164271 0.82826565 0.82043186 0.81595003] 
+
+Time to Train: 1.066239833831787 
+
+Test Accuracy: 0.784688995215311 
+
+Final Train Accuracy: 0.8417508417508418 
+
+f1: 0.6484375 
+ accuracy: 0.784688995215311 precision: 0.7980769230769231 
+ recall: 0.5460526315789473
+(7641) maimoons@Maimoons-MBP Project 3 % 
