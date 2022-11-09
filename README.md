@@ -42,6 +42,18 @@
 ## About The Project
 Github Repo - https://github.com/Maimoons/7641/blob/master/README.md
 
+Project 3: Unsupervised Learning
+
+The folder: Project 3 contains code for the third assignment in the course.
+It implements 2 different clustering problems and 4 dimensionality reduction problems:
+ * K Means- kmm.py
+ * Expectation Maximization - em.py
+ * PCA - pca.py
+ * IPA - ipa.py
+ * Gaussian Random Mixture - grp.py
+ * Random Forest - rf.py
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 Project 2: Randomized Optimization
 
 The folder: Project 2 contains code for the second assignment in the course.
@@ -67,6 +79,13 @@ It implements 5 classifiers:
 
 
 ### Built With
+Project 3 (the following on top of the dependencies from project 1)
+* sklears.clusters
+* sklearn.metrics
+* sklearn.manifolds
+* sklearn.mixture
+* sklearn.decomposition
+
 Project 2 (the following on top of the dependencies from project 1)
 * MLrose --hiive
 
@@ -105,6 +124,24 @@ The list of requirements for this repo is in requirements.txt as well as defined
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+
+<h3 align="center">Project 3</h3>
+
+There are two datasets used in this project.
+* Dataset 0 - Titanic dataset from Kaggle
+* Dataset 1 - Breast cancer dataset from sklearn
+
+The dataset index needs to be passed in to run the experiments - 
+
+Running  the experiments
+   ```sh
+   python run_experiments.py 0
+   ```
+
+The output graphs are produced in the images folder.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <h3 align="center"> Project 2 </h3>
 
