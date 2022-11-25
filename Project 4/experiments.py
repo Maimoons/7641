@@ -10,23 +10,24 @@ from policy_iteration import PolicyIteration
 from value_iteration import ValueIteration
 from q_learn import QLearning
 
+import random
 import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib.pyplot as pyplot
 
 def run_policy_itr_experiment():   
     print("Running Policy Iteration")      		  	  		  		  		    	 		 		   		 		  
-    PI = PolicyIteration(P, Reward, problem_name[p_name_i], size_name[size_name_i], size[size_i], env=env)	  
+    PI = PolicyIteration(P, Reward, problem_name[p_name_i], size_name[size_i], size[size_i], env=env)	  
     PI.run_epsilon_cv()	  
     
 def run_value_itr_experiment():   
     print("Running Value Iteration")      		  	  		  		  		    	 		 		   		 		        		  	  		  		  		    	 		 		   		 		  
-    VI = ValueIteration(P, Reward, problem_name[p_name_i], size_name[size_name_i], size[size_i], env=env)	  
+    VI = ValueIteration(P, Reward, problem_name[p_name_i], size_name[size_i], size[size_i], env=env)	  
     VI.run_epsilon_cv()	         
  
 def run_qlearn_experiment():   
     print("Running Q Learning")      		  	  		  		  		    	 		 		   		 		        		  	  		  		  		    	 		 		   		 		  
-    Q = QLearning(P, Reward, problem_name[p_name_i], size_name[size_name_i], size[size_i], env=env)	  
+    Q = QLearning(P, Reward, problem_name[p_name_i], size_name[size_i], size[size_i], env=env)	  
     Q.run()	         
 
 def run_all_experiments():
@@ -109,17 +110,18 @@ def plot_experiments_lake():
 
 
          
-if __name__ == "__main__":  
-    problem_name = ["FrozenLake", "ForestManagement"]
-    size_name = ["Small", "Medium", "Large"]
-    size = [4, 8, 16]
-    states = [2, 8, 16]
-    env = None
+if __name__ == "__main__": 
+    random.seed(10); np.random.seed(10)
     
-    p_name_i = 0
-    size_name_i = 0
-    size_i = 0
-    states_i = 0
+    problem_name = ["FrozenLake", "ForestManagement"]; p_name_i = 0
+    size_name = ["Small", "Medium", "Large"]; size_i = 0
+    size = [4, 10, 20] #lake size
+    states = [20, 200, 500] #forest states
+    r1_r2 = [(10,2), (50,5), (100,15)]
+    
+    env = None 
+    
+    print("Running: " + problem_name[p_name_i] + " " + size_name[size_i])
     
     if p_name_i == 0:
         map = frozen_lake.generate_random_map(size=size[size_i], p=0.9) #p = tile frozen
@@ -127,9 +129,12 @@ if __name__ == "__main__":
         P, Reward = env.P, env.R
 
     if p_name_i == 1:
-        P, Reward = hiive.mdptoolbox.example.forest(S= states[states_i], p=0.01)	#p = fire
+        P, Reward = hiive.mdptoolbox.example.forest(S= states[size_i],
+                                                    p=0.01,
+                                                    r1=r1_r2[size_i][0],
+                                                    r1=r1_r2[size_i][1])	#p = fire
         
-    #run_all_experiments()
-    plot_experiments_forest()
+    run_all_experiments()
+    #plot_experiments_forest()
     
      		  	  		  		  		    	 		 		   		 		  

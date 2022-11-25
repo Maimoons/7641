@@ -20,7 +20,7 @@ class OpenAI_MDPToolbox:
         self.env_name = openAI_env_name
     
         self.env = gym.make(self.env_name, **kwargs)
-        self.env.reset()
+        self.env.reset(seed=10)
 
         if render:
             self.env.render()

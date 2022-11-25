@@ -18,9 +18,9 @@ class ValueIteration():
         self.problem_name = problem_name
         self.size = size
         self.size_name = size_name
-        self.gamma_list = [0.1, 0.2] #[0.4, 0.6, 0.9, 0.95, 0.99, 1]
-        self.epsilon_list = [0.3, 0.4] #[0.05, 0.15, 0.25, 0.5, 0.75, 0.95]
-        self.max_iter = 2 #10000
+        self.gamma_list = [0.6, 0.8, 0.9, 0.95, 0.97] #[0.1, 0.2] 
+        self.epsilon_list = [10 ** -3, 10 ** -6, 10 ** -9, 10 ** -12, 10 ** -15] #[0.1, 0.2] 
+        self.max_iter = 10000 #2
         self.best_policy = None
         
         self.keys = ["Reward", "Delta", "Time", "Max V", "Cum Reward", "Iterations", "Threshold"]
