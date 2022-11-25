@@ -19,70 +19,69 @@ class ValueIteration():
         self.problem_name = problem_name
         self.size = size
         self.size_name = size_name
-        self.gamma_list = [0.4, 0.3] #[0.4, 0.6, 0.9, 0.95, 0.99, 1]
-        self.epsilon_list = [0.4, 0.3] #[0.05, 0.15, 0.25, 0.5, 0.75, 0.95]
-        self.max_iter = 5 #10000
+        self.gamma_list = [0.1, 0.2] #[0.4, 0.6, 0.9, 0.95, 0.99, 1]
+        self.epsilon_list = [0.3, 0.4] #[0.05, 0.15, 0.25, 0.5, 0.75, 0.95]
+        self.max_iter = 2 #10000
         self.best_epsilon = None
         self.best_policy = None
         self.best_gamma = None
         
-        self.avg_time = []
-        self.avg_cum_reward = []
-        self.avg_max_v = []
-        self.num_itrs = []
-        self.deltas = []
+        self.keys = ["Reward", "Delta", "Time", "Max V", "Cum Reward", "Iterations", "Threshold"]
+        self.epsilon_gamma_stat_dict = {g: {k:{e:[] for e in self.epsilon_list} for k in self.keys} for g in self.gamma_list}
+        
         self.thresholds = []
     
-        
-    def run_cv(self):
+    def run_epsilon_cv(self):
+        print("Running Epsilon tuning")
+        self.run_cv(self.epsilon_list, "Epsilon", self.epsilon_gamma_stat_dict)
+    
+    def run_cv(self, param_list, param_name, param_stat_dict):
         best_cum_reward = 0
-        best_idx = 0
-        best_stats = None
-        best_threshold = None
-        
-        self.param_list = list(itertools.product(self.gamma_list, self.epsilon_list))
-        print(self.param_list)
-        for i,(gamma,epsilon) in enumerate(self.param_list):
-            VI_mdp = hiive.mdptoolbox.mdp.ValueIteration\
-                (self.mdp_P, self.mdp_Rewards, epsilon = epsilon, gamma=gamma, max_iter=self.max_iter)
+                        
+        avg_stat_dict = {g: {k:[] for k in param_list} for g in self.keys} 
+
+        for _,param in enumerate(param_list):
+            for _,gamma in enumerate(self.gamma_list):
+                VI_mdp = hiive.mdptoolbox.mdp.ValueIteration\
+                (self.mdp_P, self.mdp_Rewards, epsilon = param, gamma=gamma, max_iter=self.max_iter)
+                VI_mdp.run()
             
-            VI_mdp.run()
-            #PI_mdp.verbose = True
-            
-            threshold = VI_mdp.thresh 
-            policy = VI_mdp.policy
-            stats = VI_mdp.run_stats
-            
-            cum_rewards = stats[-1]["Mean V"]
-            if (cum_rewards > best_cum_reward):
-                self.best_gamma = gamma
-                self.best_policy = policy
-                best_idx = i
-                best_stats = stats
-                best_threshold = threshold
+                threshold = VI_mdp.thresh    
+                policy = VI_mdp.policy
+                
+                stats = VI_mdp.run_stats
+                cum_rewards = stats[-1]["Mean V"]
+                
+                if (cum_rewards > best_cum_reward):
+                    best_params = (param,gamma)
+                    self.best_policy = policy
              
-            reward, delta, time, max_v, cum_reward = self.calculate_stats(stats)
-            self.add_averages(threshold, reward, delta, time, max_v, cum_reward)
+                    
+                reward, delta, time, max_v, cum_reward = self.calculate_stats(stats)
+                self.add_stats(param_stat_dict, param, gamma, reward, delta, time, max_v, cum_reward)                        
+                self.add_averages(threshold, param, avg_stat_dict, reward, delta, time, max_v, cum_reward)
             
         
-        reward, delta, time, max_v, cum_reward = self.calculate_stats(best_stats)  
-        self.plot_iteration(best_idx, reward, delta, time, max_v, cum_reward)  
-        self.plot_averages()
+        self.plot_iteration(param_stat_dict, best_params, param_name)  
+        self.plot_averages(avg_stat_dict, "Threshold", param_list)
+        
         
         if self.env:
             policy_array = np.array(self.best_policy).reshape(self.size,self.size)
             self.plot_policy(policy_array, self.env.unwrapped.desc, self.env.colors(), self.env.directions(),\
-                "Best Policy; gamma, epsilon: "+str(self.param_list[best_idx]), "policy")
+                "Best Policy; Gamma, %s: (%s , %s)" % (param_name, str(best_params[1]),str(best_params[0])), "policy", param_name)
         else:
-            print("Policy")
+            print("Best Policy; Gamma, %s: (%s , %s)" % (param_name, str(best_params[1]), str(best_params[0])))
             print(self.best_policy)
-            
-        print("Best Params", self.param_list[best_idx])
-        print("Best Threhold", best_threshold)
-        print("Avg Time", np.mean(self.avg_time[best_idx]))
-        print("Avg Cum Reward", np.mean(self.avg_cum_reward[best_idx]))
-        print("Avg Itr", self.num_itrs[best_idx])
-        print("Avg Delta", self.deltas[best_idx])
+        
+        best_param, best_gamma = best_params
+        print("Best Gamma,"+param_name, best_gamma, best_param)
+        print("Avg Time", np.mean(avg_stat_dict["Reward"][best_param]))
+        print("Avg Cum Reward", np.mean(avg_stat_dict["Cum Reward"][best_param]))
+        print("Avg Max V", np.mean(avg_stat_dict["Max V"][best_param]))
+        print("Avg Itr", np.mean(avg_stat_dict["Iterations"][best_param]))
+        print("Avg Delta", np.mean(avg_stat_dict["Delta"][best_param]))
+           
     
     def calculate_stats(self, stats_list):
         reward, delta, time, max_v, cum_reward = [[] for _ in range(5)]
@@ -96,45 +95,106 @@ class ValueIteration():
          
         return reward, delta, time, max_v, cum_reward
 
-    def add_averages(self, threshold, reward, delta, time, max_v, cum_reward):
-        self.avg_time.append(time)
-        self.avg_cum_reward.append(cum_reward)
-        self.avg_max_v.append(max_v)
-        self.num_itrs.append([len(reward)])
-        self.deltas.append([delta[-1]]) # delta when converged
-        self.thresholds.append(threshold)
+    def add_stats(self, param_stat_dict, param, gamma, reward, delta, time, max_v, cum_reward):
+        old_r = param_stat_dict[gamma]["Reward"] 
+        old_r.update({param: reward})
+        param_stat_dict[gamma].update({"Reward": old_r})
         
+        old_d = param_stat_dict[gamma]["Delta"] 
+        old_d.update({param: delta})
+        param_stat_dict[gamma].update({"Delta": old_d})
         
-    def plot_iteration(self, i, reward, delta, time, max_v, cum_reward):
-        self.plot_iteration_graph(i, reward, "Reward", "Reward across iterations", "reward")
-        self.plot_iteration_graph(i, delta, "Policy Valuation Delta", "Delta across iterations", "delta")
-        self.plot_iteration_graph(i, time, "Time", "Clock Time across iterations", "time")
-        self.plot_iteration_graph(i, max_v, "Max Policy Valuation", "Max Valuation across iterations", "max_v")
-        self.plot_iteration_graph(i, cum_reward, "Cumulative Reward", "Cumulative Reward across iteration", "cum_reward", max_v = max_v)
+        old_t = param_stat_dict[gamma]["Time"] 
+        old_t.update({param: time})
+        param_stat_dict[gamma].update({"Time": old_t})
+        
+        old_mv = param_stat_dict[gamma]["Max V"] 
+        old_mv.update({param: max_v})
+        param_stat_dict[gamma].update({"Max V": old_mv})
+        
+        old_cr = param_stat_dict[gamma]["Cum Reward"] 
+        old_cr.update({param: cum_reward})
+        param_stat_dict[gamma].update({"Cum Reward": old_cr})
 
-    def plot_averages(self):
-        self.plot_averages_graph(self.avg_time, "Average Time", self.thresholds, "Threshold", "Convergence: Average Time to converge", "th_avg_time")
-        self.plot_averages_graph(self.avg_cum_reward, "Average Cumulative Reward", self.thresholds, "Threshold", "Convergence: Average Cumulative Reward", "th_avg_cum_reward", self.avg_max_v)
-        self.plot_averages_graph(self.num_itrs, "Number of iterations", self.thresholds, "Threshold", "Convergence: Number of iterations to converge", "th_num_itrs", fill = False)
-        self.plot_averages_graph(self.deltas, "Delta in Valuation", self.thresholds, "Threshold", "Convergence: Delta at convergence", "th_deltas", fill = True)
+        #print(gamma, param, reward, delta, time, max_v, cum_reward, "\n", param_stat_dict, "\n")
 
-    def plot_iteration_graph(self, i, y, y_name, title, file_name, max_v = None):
-        plt.title(title + " gamma, epsilon =" + str(self.param_list[i]))
+    def add_averages(self, threshold, param, avg_stat_dict, reward, delta, time, max_v, cum_reward):  
+        new_val = avg_stat_dict["Reward"][param]+[reward[-1]]
+        old_r = avg_stat_dict["Reward"]
+        old_r.update({param:new_val})
+        avg_stat_dict.update({"Reward": old_r})
+        
+        new_val = avg_stat_dict["Delta"][param]+[delta[-1]] 
+        old_d = avg_stat_dict["Delta"]
+        old_d.update({param:new_val})
+        avg_stat_dict.update({"Delta": old_d})
+        
+        new_val = avg_stat_dict["Time"][param]+[time[-1]]
+        old_t = avg_stat_dict["Time"]
+        old_t.update({param:new_val})
+        avg_stat_dict.update({"Time": old_t})
+        
+        new_val = avg_stat_dict["Max V"][param]+[max_v[-1]]
+        old_mv = avg_stat_dict["Max V"]
+        old_mv.update({param:new_val})
+        avg_stat_dict.update({"Max V": old_mv})
+        
+        new_val = avg_stat_dict["Cum Reward"][param]+[cum_reward[-1]]
+        old_cr = avg_stat_dict["Cum Reward"]
+        old_cr.update({param:new_val})
+        avg_stat_dict.update({"Cum Reward": old_cr})
+        
+        new_val = avg_stat_dict["Iterations"][param]+[len(reward)]
+        old_i = avg_stat_dict["Iterations"]
+        old_i.update({param:new_val})
+        avg_stat_dict.update({"Iterations": old_i})
+        
+        new_val = avg_stat_dict["Threshold"][param]+[threshold]
+        old_t = avg_stat_dict["Threshold"]
+        old_t.update({param:new_val})
+        avg_stat_dict.update({"Threshold": old_t})
+        
+    def plot_iteration(self, param_stat_dict, best_param, param_name):
+        _, gamma = best_param
+        self.plot_iteration_graph(param_stat_dict[gamma]["Reward"], "Reward", "Reward across iterations", "reward", gamma, param_name)
+        self.plot_iteration_graph(param_stat_dict[gamma]["Delta"], "Policy Valuation Delta", "Delta across iterations", "delta", gamma, param_name)
+        self.plot_iteration_graph(param_stat_dict[gamma]["Time"], "Time", "Clock Time across iterations", "time", gamma, param_name)
+        self.plot_iteration_graph(param_stat_dict[gamma]["Max V"], "Max Policy Valuation", "Max Valuation across iterations", "max_v", gamma, param_name)
+        self.plot_iteration_graph(param_stat_dict[gamma]["Cum Reward"], "Cumulative Reward", "Cumulative Reward across iteration", "cum_reward", gamma, param_name)
+
+    def plot_averages(self, avg_stat_dict, param_name, param_list):
+        #x = param_list #epsilon
+        x = np.mean(list(avg_stat_dict["Threshold"].values()), axis = 1) #threshold
+        self.plot_averages_graph(list(avg_stat_dict["Time"].values()), "Average Time", x, param_name, "Convergence: Average Time to converge", "avg_time")
+        self.plot_averages_graph(list(avg_stat_dict["Cum Reward"].values()), "Average Cumulative Reward", x, param_name, "Convergence: Average Cumulative Reward", "avg_cum_reward", list(avg_stat_dict["Max V"].values()))
+        self.plot_averages_graph(list(avg_stat_dict["Iterations"].values()), "Number of iterations", x, param_name, "Convergence: Number of iterations to converge", "avg_num_itrs")
+        self.plot_averages_graph(list(avg_stat_dict["Delta"].values()), "Delta in Valuation", x, param_name, "Convergence: Delta at convergence", "avg_deltas")
+        self.plot_averages_graph(list(avg_stat_dict["Reward"].values()), "Final Reward", x, param_name, "Convergence: Reward convergence", "avg_reward")
+
+       
+    def plot_iteration_graph(self, y_dict, y_name, title, file_name, gamma, param_name):
+        plt.title(title + " best gamma: "+str(gamma))
+
+        y_values = list(y_dict.values())
+        y_keys = list(y_dict.keys())
+        #maxLength = max(len(x) for x in y_values )
+        
         plt.xlabel('Iteration #')
         plt.ylabel(y_name)
-        x = np.arange(1, len(y)+1)
-        plt.plot(x, y, label = "Average "+y_name)
+        for i, y in enumerate(y_values):
+            x = np.arange(1, len(y)+1)
+            plt.plot(x, y, label = param_name+": "+ str(y_keys[i]))
         
-        if max_v:
-            plt.plot(x, max_v,'r--', label = "Max "+y_name)   
-            plt.legend(loc = 'best')     
-        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name, str(i)+'_'+file_name]))
+        plt.legend(loc = 'best')        
+        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name, param_name, file_name]))
         plt.clf()
-       
+        
     def plot_averages_graph(self, y, y_name, param_range, param_name, title, file_name, max_v = None, fill = True):
         y_mean = np.mean(y, axis = 1)
         y_std = np.std(y, axis = 1)
         plt.plot(param_range, y_mean, color = 'b', label = "Average")
+        plt.xticks(param_range) 
+        
         if fill:
             plt.fill_between(
             param_range,
@@ -146,17 +206,17 @@ class ValueIteration():
             
         if max_v:
             y_max = np.max(max_v, axis = 1) 
-            plt.plot(param_range, y_max,'r--', label = "Max ")
+            plt.plot(param_range, y_max,'r--', label = "Max")
             plt.legend(loc = 'best')  
         
         plt.title(title)
         plt.xlabel(param_name)
         plt.ylabel(y_name)
-        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name,file_name]))
+        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name,param_name,file_name]))
         plt.clf()  
         print(y_name, "Mean", y_mean, "\n")
   
-    def plot_policy(self, policy, map_desc, color_map, direction_map, title, file_name):
+    def plot_policy(self, policy, map_desc, color_map, direction_map, title, file_name, param_name):
         fig = plt.figure()
         ax = fig.add_subplot(111, xlim=(0, policy.shape[1]), ylim=(0, policy.shape[0]))
         
@@ -186,7 +246,7 @@ class ValueIteration():
         plt.axis('off')
         plt.xlim((0, policy.shape[1]))
         plt.ylim((0, policy.shape[0]))
-        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name,file_name]))
+        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name, param_name, file_name]))
         plt.clf()
         
             
@@ -204,4 +264,4 @@ if __name__ == "__main__":
     P, Reward = env.P, env.R
        		  	  		  		  		    	 		 		   		 		  
     VI = ValueIteration(P, Reward, problem_name, size_name, 4, env=env)	  
-    VI.run_cv()	   		  	  		  		  		    	 		 		   		 		  
+    VI.run_epsilon_cv()	   		  	  		  		  		    	 		 		   		 		  
