@@ -8,7 +8,6 @@ from openai import OpenAI_MDPToolbox
 import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib.patheffects as path_effects
-import itertools
 
 class ValueIteration():
     
@@ -22,9 +21,7 @@ class ValueIteration():
         self.gamma_list = [0.1, 0.2] #[0.4, 0.6, 0.9, 0.95, 0.99, 1]
         self.epsilon_list = [0.3, 0.4] #[0.05, 0.15, 0.25, 0.5, 0.75, 0.95]
         self.max_iter = 2 #10000
-        self.best_epsilon = None
         self.best_policy = None
-        self.best_gamma = None
         
         self.keys = ["Reward", "Delta", "Time", "Max V", "Cum Reward", "Iterations", "Threshold"]
         self.epsilon_gamma_stat_dict = {g: {k:{e:[] for e in self.epsilon_list} for k in self.keys} for g in self.gamma_list}
@@ -186,7 +183,7 @@ class ValueIteration():
             plt.plot(x, y, label = param_name+": "+ str(y_keys[i]))
         
         plt.legend(loc = 'best')        
-        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name, param_name, file_name]))
+        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name, param_name, file_name]), bbox_inches="tight")
         plt.clf()
         
     def plot_averages_graph(self, y, y_name, param_range, param_name, title, file_name, max_v = None, fill = True):
@@ -212,7 +209,7 @@ class ValueIteration():
         plt.title(title)
         plt.xlabel(param_name)
         plt.ylabel(y_name)
-        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name,param_name,file_name]))
+        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name,param_name,file_name]), bbox_inches="tight")
         plt.clf()  
         print(y_name, "Mean", y_mean, "\n")
   
@@ -246,7 +243,7 @@ class ValueIteration():
         plt.axis('off')
         plt.xlim((0, policy.shape[1]))
         plt.ylim((0, policy.shape[0]))
-        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name, param_name, file_name]))
+        plt.savefig('/'.join(['./images','ValueIteration',self.problem_name,self.size_name, param_name, file_name]), bbox_inches="tight")
         plt.clf()
         
             

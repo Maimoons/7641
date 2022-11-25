@@ -215,7 +215,7 @@ class QLearning():
             plt.plot(x, y, label = param_name+": "+ str(y_keys[i]))
           
         plt.legend(loc = 'best')        
-        plt.savefig('/'.join(['./images','QLearning',self.problem_name,self.size_name, param_name,file_name]))
+        plt.savefig('/'.join(['./images','QLearning',self.problem_name,self.size_name, param_name,file_name]), bbox_inches="tight")
         plt.clf()
        
     def plot_averages_graph(self, y, y_name, param_range, param_name, title, file_name, max_v = None, fill = True):
@@ -242,7 +242,7 @@ class QLearning():
         plt.title(title)
         plt.xlabel(param_name)
         plt.ylabel(y_name)
-        plt.savefig('/'.join(['./images','QLearning',self.problem_name,self.size_name,param_name,file_name]))
+        plt.savefig('/'.join(['./images','QLearning',self.problem_name,self.size_name,param_name,file_name]), bbox_inches="tight")
         plt.clf()  
         print(y_name, "Mean", y_mean, "\n")
   
@@ -272,7 +272,7 @@ class QLearning():
         plt.axis('off')
         plt.xlim((0, policy.shape[1]))
         plt.ylim((0, policy.shape[0]))
-        plt.savefig('/'.join(['./images','QLearning',self.problem_name,self.size_name,param_name, file_name]))
+        plt.savefig('/'.join(['./images','QLearning',self.problem_name,self.size_name,param_name, file_name]), bbox_inches="tight")
         plt.clf()
         
             
