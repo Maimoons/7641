@@ -42,6 +42,15 @@
 ## About The Project
 Github Repo - https://github.com/Maimoons/7641/blob/master/README.md
 
+Project 4: Reinforcement Learning
+The folder: Project 4 contains code for the forth assignment in the course.
+It implements 3 different RL algorithms on 2 different MDP:
+ * Policy Iteration- policy_iteration.py
+ * Value Iteration - value_iteration.py
+ * Q Learning - q_learn.py
+ * Experiments - experiments.py
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 Project 3: Unsupervised Learning
 
 The folder: Project 3 contains code for the third assignment in the course.
@@ -79,6 +88,11 @@ It implements 5 classifiers:
 
 
 ### Built With
+Project 4 (the following on top of the dependencies from project 1)
+* hiive.mdptoolbox
+* mdptoolbox
+* openaigym
+
 Project 3 (the following on top of the dependencies from project 1)
 * sklears.clusters
 * sklearn.metrics
