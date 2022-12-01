@@ -139,6 +139,23 @@ The list of requirements for this repo is in requirements.txt as well as defined
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+<h3 align="center">Project 4</h3>
+
+There are two problems used in this project.
+* Grid problem
+* Non grid problem
+
+The configuration for both is defined in the experiments file - 
+
+Running  the experiments
+   ```sh
+   python experiments.py 0
+   ```
+
+The output graphs are produced in the images folder.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <h3 align="center">Project 3</h3>
 
 There are two datasets used in this project.
